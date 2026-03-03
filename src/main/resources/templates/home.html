@@ -27,23 +27,134 @@
     </section>
 
     <!-- Featured Books Carousel -->
-    <section class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2><i class="bi bi-star"></i> Latest Books</h2>
-            <a th:href="@{/books}" class="btn btn-outline-primary">View All <i class="bi bi-arrow-right"></i></a>
+ <!-- Featured Books Carousel -->
+<section class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-star"></i> Latest Books</h2>
+        <a th:href="@{/books}" class="btn btn-outline-primary">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div th:if="${books != null && !#lists.isEmpty(books)}">
+
+        <!-- ── MOBILE carousel: 1 book per slide (visible xs→sm) ── -->
+        <div class="d-block d-md-none">
+            <div id="bookCarouselMobile" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow">
+                    <div th:each="book, iterStat : ${books}"
+                         th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                        <div class="px-2 py-2">
+                            <div class="card h-100 shadow-sm book-card">
+                                <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                     class="card-img-top" alt="Book cover"
+                                     style="height: 260px; object-fit: cover;">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                    <p class="card-text text-muted small mb-1 text-truncate">
+                                        <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                    </p>
+                                    <p class="card-text small mb-2">
+                                        <span class="badge bg-info" th:text="${book.bookCondition}">Cond</span>
+                                        <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                        <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                                              th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                    </p>
+                                    <p class="card-text small text-muted mb-2">
+                                        📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> in stock
+                                    </p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselMobile" data-bs-slide="prev" style="filter:invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselMobile" data-bs-slide="next" style="filter:invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
+                    <button th:each="book, iterStat : ${books}"
+                            type="button" data-bs-target="#bookCarouselMobile"
+                            th:attr="data-bs-slide-to=${iterStat.index}"
+                            th:classappend="${iterStat.index == 0} ? 'active'">
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Carousel (visible when books exist) -->
-        <div th:if="${books != null && !#lists.isEmpty(books)}">
-            <div id="bookCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+        <!-- ── TABLET carousel: 2 books per slide (visible sm→md) ── -->
+        <div class="d-none d-md-block d-lg-none">
+            <div id="bookCarouselTablet" class="carousel slide mb-4" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3 shadow">
-                    <!-- Group books into slides of 4 -->
+                    <th:block th:with="chunkSize=2">
+                        <div th:each="book, iterStat : ${books}"
+                             th:if="${iterStat.index % chunkSize == 0}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="row g-0 px-1 py-2">
+                                <div th:each="inner, innerStat : ${books}"
+                                     th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                     class="col-6 px-2">
+                                    <div class="card h-100 shadow-sm book-card">
+                                        <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                             class="card-img-top" alt="Book cover"
+                                             style="height: 240px; object-fit: cover;">
+                                        <div class="card-body d-flex flex-column p-3">
+                                            <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                            <p class="card-text text-muted small mb-1 text-truncate">
+                                                <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                            </p>
+                                            <p class="card-text small mb-2">
+                                                <span class="badge bg-info" th:text="${inner.bookCondition}">Cond</span>
+                                                <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                <span class="badge" th:classappend="${inner.available} ? 'bg-success' : 'bg-danger'"
+                                                      th:text="${inner.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                            </p>
+                                            <p class="card-text small text-muted mb-2">
+                                                📦 <span th:text="${inner.quantity != null ? inner.quantity : 0}">0</span> in stock
+                                            </p>
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselTablet" data-bs-slide="prev" style="filter:invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselTablet" data-bs-slide="next" style="filter:invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
+                    <th:block th:with="chunkSize=2">
+                        <button th:each="book, iterStat : ${books}"
+                                th:if="${iterStat.index % chunkSize == 0}"
+                                type="button" data-bs-target="#bookCarouselTablet"
+                                th:attr="data-bs-slide-to=${iterStat.index / chunkSize}"
+                                th:classappend="${iterStat.index == 0} ? 'active'">
+                        </button>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── DESKTOP carousel: 4 books per slide (visible lg+) ── -->
+        <div class="d-none d-lg-block">
+            <div id="bookCarouselDesktop" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow">
                     <th:block th:with="chunkSize=4">
                         <div th:each="book, iterStat : ${books}"
                              th:if="${iterStat.index % chunkSize == 0}"
                              th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-0 px-1 py-2">
-                                <!-- This book + up to 3 more neighbours -->
+                            <div class="row row-cols-4 g-0 px-1 py-2">
                                 <div th:each="inner, innerStat : ${books}"
                                      th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
                                      class="col px-2">
@@ -76,65 +187,62 @@
                         </div>
                     </th:block>
                 </div>
-                <!-- Carousel controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev"
-                        style="filter: invert(1);">
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselDesktop" data-bs-slide="prev" style="filter:invert(1);">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next"
-                        style="filter: invert(1);">
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselDesktop" data-bs-slide="next" style="filter:invert(1);">
                     <span class="carousel-control-next-icon"></span>
                 </button>
-                <!-- Indicators -->
-                <div class="carousel-indicators mt-2 position-relative" style="filter: invert(1);">
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
                     <th:block th:with="chunkSize=4">
                         <button th:each="book, iterStat : ${books}"
                                 th:if="${iterStat.index % chunkSize == 0}"
-                                type="button" data-bs-target="#bookCarousel"
+                                type="button" data-bs-target="#bookCarouselDesktop"
                                 th:attr="data-bs-slide-to=${iterStat.index / chunkSize}"
                                 th:classappend="${iterStat.index == 0} ? 'active'">
                         </button>
                     </th:block>
                 </div>
             </div>
+        </div>
 
-            <!-- Card grid below carousel -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mt-2">
-                <div class="col" th:each="book : ${books}">
-                    <div class="card h-100 shadow-sm book-card">
-                        <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
-                             class="card-img-top" alt="Book cover" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Book Title</h6>
-                            <p class="card-text text-muted small mb-1">
-                                <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
-                            </p>
-                            <p class="card-text small mb-1">
-                                <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
-                                <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
-                                <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
-                                      th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
-                            </p>
-                            <p class="card-text small text-muted mb-2">
-                                📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> copies available
-                            </p>
-                            <div class="mt-auto pt-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="fw-bold text-success fs-6">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
-                                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
-                                </div>
+        <!-- Card grid below carousel (unchanged) -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mt-2">
+            <div class="col" th:each="book : ${books}">
+                <div class="card h-100 shadow-sm book-card">
+                    <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                         class="card-img-top" alt="Book cover" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Book Title</h6>
+                        <p class="card-text text-muted small mb-1">
+                            <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                        </p>
+                        <p class="card-text small mb-1">
+                            <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
+                            <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                            <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                                  th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+                        </p>
+                        <p class="card-text small text-muted mb-2">
+                            📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> copies available
+                        </p>
+                        <div class="mt-auto pt-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-success fs-6">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div th:if="${books == null || #lists.isEmpty(books)}" class="text-center py-5">
-            <i class="bi bi-inbox display-1 text-muted"></i>
-            <p class="text-muted mt-3">No books available yet. Be the first to list one!</p>
-        </div>
-    </section>
+    <div th:if="${books == null || #lists.isEmpty(books)}" class="text-center py-5">
+        <i class="bi bi-inbox display-1 text-muted"></i>
+        <p class="text-muted mt-3">No books available yet. Be the first to list one!</p>
+    </div>
+</section>
 
     <!-- Categories Section -->
     <section class="bg-light py-5" th:if="${categories != null && !#lists.isEmpty(categories)}">
