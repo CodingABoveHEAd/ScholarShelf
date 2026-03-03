@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="~{layout/base :: nav}"></div>
+<div th:replace="~{layout/base :: alerts}"></div>
+
+<main class="flex-grow-1">
+    <div class="container-fluid py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="bi bi-book"></i> Manage Books</h2>
+            <a th:href="@{/admin/books/new}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add New Book
+            </a>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="row g-3 mb-4">
+            <div class="col-auto">
+                <span class="badge bg-primary fs-6" th:text="${#lists.size(books)} + ' Total Books'">0 Total Books</span>
+            </div>
+        </div>
+
+        <!-- Book Cards Grid -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4" th:if="${!#lists.isEmpty(books)}">
+            <div class="col" th:each="book : ${books}">
+                <div class="card h-100 shadow-sm book-card">
+                    <div class="position-relative">
+                        <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400/e9ecef/6c757d?text=No+Image'"
+                             class="card-img-top" alt="Book cover" style="height: 220px; object-fit: cover;">
+                        <span class="position-absolute top-0 end-0 m-2 badge"
+                              th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                              th:text="${book.available} ? 'Available' : 'Sold'"></span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title fw-bold mb-1 text-truncate" th:text="${book.title}">Title</h6>
+                        <p class="text-muted small mb-1 text-truncate"><i class="bi bi-person"></i> <span th:text="${book.author}">Author</span></p>
+                        <p class="small mb-1">
+                            <span class="badge bg-info" th:text="${book.bookCondition}">Cond</span>
+                            <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                        </p>
+                        <p class="small text-muted mb-1"><i class="bi bi-shop"></i> <span th:text="${book.sellerName}">Seller</span></p>
+                        <div class="mt-auto pt-2">
+                            <p class="fw-bold text-success mb-2">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></p>
+                            <div class="d-flex gap-1">
+                                <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-outline-primary flex-grow-1">
+                                    <i class="bi bi-eye"></i> View
+                                </a>
+                                <a th:href="@{/admin/books/{id}/edit(id=${book.id})}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form th:action="@{/admin/books/{id}/delete(id=${book.id})}" method="post" class="d-inline"
+                                      onsubmit="return confirm('Delete this book permanently?')">
+                                    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div th:if="${#lists.isEmpty(books)}" class="text-center py-5">
+            <i class="bi bi-inbox display-1 text-muted"></i>
+            <p class="text-muted mt-3 fs-5">No books in the system yet.</p>
+            <a th:href="@{/admin/books/new}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add First Book
+            </a>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{layout/base :: footer}"></div>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

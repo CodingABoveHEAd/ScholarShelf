@@ -59,6 +59,42 @@
     }
 }
 
+/* =====================
+   Carousel Styles
+   ===================== */
+#bookCarousel .carousel-item {
+    padding: 0.5rem 2rem;
+}
+
+#bookCarousel .carousel-control-prev,
+#bookCarousel .carousel-control-next {
+    width: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+}
+
+#bookCarousel .carousel-control-prev { left: -0.5rem; }
+#bookCarousel .carousel-control-next { right: -0.5rem; }
+
+#bookCarousel .carousel-indicators {
+    bottom: -1.5rem;
+}
+
+#bookCarousel .carousel-indicators button {
+    background-color: #6c757d;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}
+
+#bookCarousel .carousel-indicators button.active {
+    background-color: #0d6efd;
+}
+
+
 /* Table responsive */
 .table th {
     white-space: nowrap;

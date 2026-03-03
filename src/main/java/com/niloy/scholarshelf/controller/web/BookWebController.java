@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
@@ -31,6 +32,7 @@ public class BookWebController {
     private final CategoryService categoryService;
     private final ReviewService reviewService;
     private final WishlistService wishlistService;
+    private final ImageUploadService imageUploadService;
 
     /** Public: Browse all available books with search, filter, and pagination. */
     @GetMapping("/books")
@@ -80,6 +82,7 @@ public class BookWebController {
     @PostMapping("/seller/books")
     public String createBook(@Valid @ModelAttribute BookRequest bookRequest,
                              BindingResult bindingResult,
+                             @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
                              Authentication authentication,
                              Model model,
                              RedirectAttributes redirectAttributes) {
@@ -89,6 +92,9 @@ public class BookWebController {
         }
 
         try {
+            if (imageFile != null && !imageFile.isEmpty()) {
+                bookRequest.setImageUrl(imageUploadService.storeBookImage(imageFile));
+            }
             bookService.createBook(bookRequest, authentication.getName());
             redirectAttributes.addFlashAttribute("success", "Book listed successfully!");
             return "redirect:/seller/books";
@@ -123,6 +129,7 @@ public class BookWebController {
 
         model.addAttribute("bookRequest", bookRequest);
         model.addAttribute("bookId", id);
+        model.addAttribute("existingImageUrl", book.getImageUrl());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("editing", true);
         return "books/form";
@@ -133,23 +140,35 @@ public class BookWebController {
     public String updateBook(@PathVariable Long id,
                              @Valid @ModelAttribute BookRequest bookRequest,
                              BindingResult bindingResult,
+                             @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+                             @RequestParam(value = "existingImageUrl", required = false) String existingImageUrl,
                              Authentication authentication,
                              Model model,
                              RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("bookId", id);
+            model.addAttribute("existingImageUrl", existingImageUrl);
             model.addAttribute("categories", categoryService.getAllCategories());
             model.addAttribute("editing", true);
             return "books/form";
         }
 
         try {
+            if (imageFile != null && !imageFile.isEmpty()) {
+                if (existingImageUrl != null && existingImageUrl.startsWith("/uploads/")) {
+                    imageUploadService.deleteImage(existingImageUrl);
+                }
+                bookRequest.setImageUrl(imageUploadService.storeBookImage(imageFile));
+            } else {
+                bookRequest.setImageUrl(existingImageUrl);
+            }
             bookService.updateBook(id, bookRequest, authentication.getName());
             redirectAttributes.addFlashAttribute("success", "Book updated successfully!");
             return "redirect:/seller/books";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("bookId", id);
+            model.addAttribute("existingImageUrl", existingImageUrl);
             model.addAttribute("categories", categoryService.getAllCategories());
             model.addAttribute("editing", true);
             return "books/form";
