@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="~{layout/base :: nav}"></div>
+<div th:replace="~{layout/base :: alerts}"></div>
+
+<main class="flex-grow-1">
+    <div class="container py-4">
+        <h2><i class="bi bi-people"></i> User Management</h2>
+        <hr>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">1</td>
+                        <td th:text="${user.fullName}">Name</td>
+                        <td th:text="${user.email}">email</td>
+                        <td>
+                            <span class="badge"
+                                  th:classappend="${user.role == 'ADMIN'} ? 'bg-danger' : (${user.role == 'SELLER'} ? 'bg-primary' : 'bg-success')"
+                                  th:text="${user.role}">Role</span>
+                        </td>
+                        <td>
+                            <span class="badge" th:classappend="${user.active} ? 'bg-success' : 'bg-danger'"
+                                  th:text="${user.active} ? 'Active' : 'Inactive'">Status</span>
+                        </td>
+                        <td th:text="${#temporals.format(user.createdAt, 'MMM dd, yyyy')}">Date</td>
+                        <td>
+                            <!-- Toggle Active -->
+                            <form th:action="@{/admin/users/{id}/toggle(id=${user.id})}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm"
+                                        th:classappend="${user.active} ? 'btn-warning' : 'btn-success'"
+                                        th:text="${user.active} ? 'Deactivate' : 'Activate'">Toggle</button>
+                            </form>
+                            <!-- Change Role -->
+                            <div class="dropdown d-inline">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Role
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <form th:action="@{/admin/users/{id}/role(id=${user.id})}" method="post">
+                                            <input type="hidden" name="role" value="BUYER">
+                                            <button type="submit" class="dropdown-item">Set as Buyer</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form th:action="@{/admin/users/{id}/role(id=${user.id})}" method="post">
+                                            <input type="hidden" name="role" value="SELLER">
+                                            <button type="submit" class="dropdown-item">Set as Seller</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form th:action="@{/admin/users/{id}/role(id=${user.id})}" method="post">
+                                            <input type="hidden" name="role" value="ADMIN">
+                                            <button type="submit" class="dropdown-item">Set as Admin</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{layout/base :: footer}"></div>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>
+

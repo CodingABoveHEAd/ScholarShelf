@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="~{layout/base :: nav}"></div>
+<div th:replace="~{layout/base :: alerts}"></div>
+
+<main class="flex-grow-1">
+    <div class="container py-4">
+        <h2><i class="bi bi-receipt"></i> All Transactions</h2>
+        <hr>
+
+        <div class="table-responsive" th:if="${!#lists.isEmpty(requests)}">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Book</th>
+                        <th>Buyer</th>
+                        <th>Seller</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="req : ${requests}">
+                        <td th:text="${req.id}">1</td>
+                        <td><a th:href="@{/books/{id}(id=${req.bookId})}" th:text="${req.bookTitle}">Book</a></td>
+                        <td th:text="${req.buyerName}">Buyer</td>
+                        <td th:text="${req.sellerName}">Seller</td>
+                        <td>
+                            <span class="badge"
+                                  th:classappend="${req.status == 'PENDING'} ? 'bg-warning text-dark' : (${req.status == 'ACCEPTED'} ? 'bg-success' : (${req.status == 'REJECTED'} ? 'bg-danger' : 'bg-secondary'))"
+                                  th:text="${req.status}">Status</span>
+                        </td>
+                        <td th:text="${req.message}">Msg</td>
+                        <td th:text="${#temporals.format(req.createdAt, 'MMM dd, yyyy')}">Date</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#lists.isEmpty(requests)}" class="text-center py-5">
+            <i class="bi bi-receipt display-1 text-muted"></i>
+            <p class="text-muted mt-3">No transactions yet.</p>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{layout/base :: footer}"></div>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>
+

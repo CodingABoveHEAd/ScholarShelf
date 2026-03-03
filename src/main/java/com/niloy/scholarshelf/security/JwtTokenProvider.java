@@ -1,9 +1,9 @@
 package com.niloy.scholarshelf.security;
 
+import com.niloy.scholarshelf.config.JwtProperties;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,9 @@ public class JwtTokenProvider {
     private final SecretKey secretKey;
     private final long expirationMs;
 
-    public JwtTokenProvider(
-            @Value("${app.jwt.secret}") String secret,
-            @Value("${app.jwt.expiration-ms}") long expirationMs) {
-        this.secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
-        this.expirationMs = expirationMs;
+    public JwtTokenProvider(JwtProperties jwtProperties) {
+        this.secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtProperties.getSecret()));
+        this.expirationMs = jwtProperties.getExpirationMs();
     }
 
     /** Generate a JWT token from an authenticated user. */

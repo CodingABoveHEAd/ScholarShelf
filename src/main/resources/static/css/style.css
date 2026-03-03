@@ -1,0 +1,76 @@
+/* =====================
+   ScholarShelf - Custom Styles
+   ===================== */
+
+/* Book card hover effect */
+.book-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Category card hover */
+.category-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Navbar brand */
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+/* Star rating display */
+.bi-star-fill {
+    font-size: 0.9rem;
+}
+.bi-star {
+    font-size: 0.9rem;
+}
+
+/* Chat messages */
+#chatBox .card-body {
+    min-height: 300px;
+}
+
+/* Badge styles */
+.badge {
+    font-weight: 500;
+}
+
+/* Form validation */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Table responsive */
+.table th {
+    white-space: nowrap;
+}
+
+/* Dashboard stat cards */
+.card.border-primary,
+.card.border-success,
+.card.border-info,
+.card.border-warning,
+.card.border-secondary,
+.card.border-danger {
+    border-width: 2px;
+}
+

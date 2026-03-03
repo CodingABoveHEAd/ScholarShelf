@@ -1,13 +1,12 @@
 package com.niloy.scholarshelf.enums;
 
-}
-    POOR
-    FAIR,
-    GOOD,
-    LIKE_NEW,
-    NEW,
-public enum BookCondition {
- */
- * Enumeration representing the physical condition of a book.
 /**
-
+ * Enumeration representing the physical condition of a book.
+ */
+public enum BookCondition {
+    NEW,
+    LIKE_NEW,
+    GOOD,
+    FAIR,
+    POOR
+}
