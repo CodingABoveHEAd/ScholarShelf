@@ -44,26 +44,50 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializeUsers() {
-        if (userRepository.count() == 0) {
-            log.info("Initializing default users...");
-            String encodedPassword = passwordEncoder.encode("password123");
+        log.info("Initializing default users...");
+        String encodedPassword = passwordEncoder.encode("password123");
 
-            createUser("Admin User", "admin@scholarshelf.com", encodedPassword, Role.ADMIN,
-                    "+1234567890", "Dhaka, Bangladesh");
-            createUser("John Seller", "seller@scholarshelf.com", encodedPassword, Role.SELLER,
-                    "+1234567891", "Chittagong, Bangladesh");
-            createUser("Jane Buyer", "buyer@scholarshelf.com", encodedPassword, Role.BUYER,
-                    "+1234567892", "Sylhet, Bangladesh");
-            createUser("Alice Seller", "alice@scholarshelf.com", encodedPassword, Role.SELLER,
-                    "+1234567893", "Rajshahi, Bangladesh");
+        createOrActivateUser("Admin User", "admin@scholarshelf.com", encodedPassword, Role.ADMIN,
+                "+1234567890", "Dhaka, Bangladesh");
+        createOrActivateUser("John Seller", "seller@scholarshelf.com", encodedPassword, Role.SELLER,
+                "+1234567891", "Chittagong, Bangladesh");
+        createOrActivateUser("Jane Buyer", "buyer@scholarshelf.com", encodedPassword, Role.BUYER,
+                "+1234567892", "Sylhet, Bangladesh");
+        createOrActivateUser("Alice Seller", "alice@scholarshelf.com", encodedPassword, Role.SELLER,
+                "+1234567893", "Rajshahi, Bangladesh");
 
-            log.info("Default users created successfully. Password for all users: password123");
-        }
+        log.info("Default users ready. Password for all users: password123");
     }
 
     private void createCategory(String name, String description) {
         if (!categoryRepository.existsByName(name)) {
             categoryRepository.save(Category.builder().name(name).description(description).build());
+        }
+    }
+
+    private void createOrActivateUser(String fullName, String email, String password, Role role,
+                                      String phone, String address) {
+        var existingUser = userRepository.findByEmail(email);
+        if (existingUser.isPresent()) {
+            // User exists - ensure they are active
+            User user = existingUser.get();
+            if (!user.getActive()) {
+                user.setActive(true);
+                userRepository.save(user);
+                log.info("Activated existing user: {}", email);
+            }
+        } else {
+            // Create new user
+            userRepository.save(User.builder()
+                    .fullName(fullName)
+                    .email(email)
+                    .password(password)
+                    .role(role)
+                    .phone(phone)
+                    .address(address)
+                    .active(true)
+                    .build());
+            log.info("Created new user: {}", email);
         }
     }
 

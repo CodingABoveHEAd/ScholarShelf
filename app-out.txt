@@ -1,7 +1,8 @@
+Starting a Gradle Daemon, 5 stopped Daemons could not be reused, use --status for details
 > Task :compileJava UP-TO-DATE
-> Task :processResources
-> Task :classes
-> Task :resolveMainClassName
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
 
 > Task :bootRun
 
@@ -14,22 +15,22 @@
 
  :: Spring Boot ::                (v4.0.3)
 
-2026-03-03T10:36:16.037+06:00  INFO 20708 --- [           main] c.n.s.ScholarShelfApplication            : Starting ScholarShelfApplication using Java 17.0.12 with PID 20708 (D:\3-2\SpringBootProjects\ScholarShelf\build\classes\java\main started by NILOY in D:\3-2\SpringBootProjects\ScholarShelf)
-2026-03-03T10:36:16.043+06:00 DEBUG 20708 --- [           main] c.n.s.ScholarShelfApplication            : Running with Spring Boot v4.0.3, Spring v7.0.5
-2026-03-03T10:36:16.044+06:00  INFO 20708 --- [           main] c.n.s.ScholarShelfApplication            : No active profile set, falling back to 1 default profile: "default"
-2026-03-03T10:36:20.276+06:00  INFO 20708 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-03T10:36:20.595+06:00  INFO 20708 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 262 ms. Found 6 JPA repository interfaces.
-2026-03-03T10:36:24.509+06:00  INFO 20708 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-03-03T10:36:24.610+06:00  INFO 20708 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-03T10:36:24.610+06:00  INFO 20708 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
-2026-03-03T10:36:25.010+06:00  INFO 20708 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 8456 ms
-2026-03-03T10:36:26.127+06:00  INFO 20708 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-03T10:36:27.221+06:00  INFO 20708 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
-2026-03-03T10:36:29.181+06:00  INFO 20708 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-03T10:36:29.243+06:00  INFO 20708 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-03T10:36:29.573+06:00  INFO 20708 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@440461ef
-2026-03-03T10:36:29.575+06:00  INFO 20708 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-03T10:36:29.775+06:00  INFO 20708 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-03-03T11:36:22.803+06:00  INFO 2424 --- [           main] c.n.s.ScholarShelfApplication            : Starting ScholarShelfApplication using Java 17.0.12 with PID 2424 (D:\3-2\SpringBootProjects\ScholarShelf\build\classes\java\main started by NILOY in D:\3-2\SpringBootProjects\ScholarShelf)
+2026-03-03T11:36:22.810+06:00 DEBUG 2424 --- [           main] c.n.s.ScholarShelfApplication            : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-03-03T11:36:22.811+06:00  INFO 2424 --- [           main] c.n.s.ScholarShelfApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T11:36:25.152+06:00  INFO 2424 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T11:36:25.302+06:00  INFO 2424 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 6 JPA repository interfaces.
+2026-03-03T11:36:26.539+06:00  INFO 2424 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-03-03T11:36:26.563+06:00  INFO 2424 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T11:36:26.563+06:00  INFO 2424 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-03T11:36:26.678+06:00  INFO 2424 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3370 ms
+2026-03-03T11:36:26.947+06:00  INFO 2424 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-03T11:36:27.131+06:00  INFO 2424 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-03-03T11:36:28.348+06:00  INFO 2424 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T11:36:28.447+06:00  INFO 2424 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T11:36:28.862+06:00  INFO 2424 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@206bd7a0
+2026-03-03T11:36:28.866+06:00  INFO 2424 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T11:36:29.102+06:00  INFO 2424 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/ScholarShelfDB]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -41,327 +42,179 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-03T10:36:31.774+06:00  INFO 20708 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-Hibernate: 
-    create table books (
-        id bigint generated by default as identity,
-        author varchar(255) not null,
-        available boolean not null,
-        book_condition varchar(255) not null check ((book_condition in ('NEW','LIKE_NEW','GOOD','FAIR','POOR'))),
-        created_at timestamp(6) not null,
-        description TEXT,
-        image_url varchar(255),
-        isbn varchar(255),
-        price float(53) not null,
-        title varchar(255) not null,
-        category_id bigint not null,
-        seller_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table categories (
-        id bigint generated by default as identity,
-        description varchar(255),
-        name varchar(255) not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table exchange_requests (
-        id bigint generated by default as identity,
-        created_at timestamp(6) not null,
-        message TEXT,
-        status varchar(255) not null check ((status in ('PENDING','ACCEPTED','REJECTED','COMPLETED','CANCELLED'))),
-        updated_at timestamp(6),
-        book_id bigint not null,
-        buyer_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table messages (
-        id bigint generated by default as identity,
-        content TEXT not null,
-        is_read boolean not null,
-        sent_at timestamp(6) not null,
-        receiver_id bigint not null,
-        sender_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table reviews (
-        id bigint generated by default as identity,
-        comment TEXT,
-        created_at timestamp(6) not null,
-        rating integer not null,
-        book_id bigint not null,
-        reviewer_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table users (
-        id bigint generated by default as identity,
-        active boolean not null,
-        address varchar(255),
-        created_at timestamp(6) not null,
-        email varchar(255) not null,
-        full_name varchar(255) not null,
-        password varchar(255) not null,
-        phone varchar(255),
-        profile_image_url varchar(255),
-        role varchar(255) not null check ((role in ('BUYER','SELLER','ADMIN'))),
-        primary key (id)
-    )
-Hibernate: 
-    create table wishlist (
-        user_id bigint not null,
-        book_id bigint not null,
-        primary key (user_id, book_id)
-    )
-Hibernate: 
-    alter table if exists categories 
-       drop constraint if exists UKt8o6pivur7nn124jehx7cygw5
-2026-03-03T10:36:32.162+06:00  WARN 20708 --- [           main] org.hibernate.orm.jdbc.warn              : HHH000247: ErrorCode: 0, SQLState: 00000
-2026-03-03T10:36:32.163+06:00  WARN 20708 --- [           main] org.hibernate.orm.jdbc.warn              : constraint "ukt8o6pivur7nn124jehx7cygw5" of relation "categories" does not exist, skipping
-Hibernate: 
-    alter table if exists categories 
-       add constraint UKt8o6pivur7nn124jehx7cygw5 unique (name)
-Hibernate: 
-    alter table if exists users 
-       drop constraint if exists UK6dotkott2kjsp8vw4d0m25fb7
-2026-03-03T10:36:32.169+06:00  WARN 20708 --- [           main] org.hibernate.orm.jdbc.warn              : HHH000247: ErrorCode: 0, SQLState: 00000
-2026-03-03T10:36:32.170+06:00  WARN 20708 --- [           main] org.hibernate.orm.jdbc.warn              : constraint "uk6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
-Hibernate: 
-    alter table if exists users 
-       add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
-Hibernate: 
-    alter table if exists books 
-       add constraint FKleqa3hhc0uhfvurq6mil47xk0 
-       foreign key (category_id) 
-       references categories
-Hibernate: 
-    alter table if exists books 
-       add constraint FKiwatvar9di52i9uxrseg0h65k 
-       foreign key (seller_id) 
-       references users
-Hibernate: 
-    alter table if exists exchange_requests 
-       add constraint FKn9fxx2njtdh084ry458f8kwan 
-       foreign key (book_id) 
-       references books
-Hibernate: 
-    alter table if exists exchange_requests 
-       add constraint FKks6niy55pv52cnbmov0000b7o 
-       foreign key (buyer_id) 
-       references users
-Hibernate: 
-    alter table if exists messages 
-       add constraint FKt05r0b6n0iis8u7dfna4xdh73 
-       foreign key (receiver_id) 
-       references users
-Hibernate: 
-    alter table if exists messages 
-       add constraint FK4ui4nnwntodh6wjvck53dbk9m 
-       foreign key (sender_id) 
-       references users
-Hibernate: 
-    alter table if exists reviews 
-       add constraint FK6a9k6xvev80se5rreqvuqr7f9 
-       foreign key (book_id) 
-       references books
-Hibernate: 
-    alter table if exists reviews 
-       add constraint FKd1isgfajhtdl8mgg29up6mofi 
-       foreign key (reviewer_id) 
-       references users
-Hibernate: 
-    alter table if exists wishlist 
-       add constraint FKm5enjhac8nch6sen9m1th9gkw 
-       foreign key (book_id) 
-       references books
-Hibernate: 
-    alter table if exists wishlist 
-       add constraint FKtrd6335blsefl2gxpb8lr0gr7 
-       foreign key (user_id) 
-       references users
-2026-03-03T10:36:32.219+06:00  INFO 20708 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-03T10:36:32.335+06:00  INFO 20708 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-03T10:36:32.709+06:00 DEBUG 20708 --- [           main] c.n.s.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
-2026-03-03T10:36:32.828+06:00  INFO 20708 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2026-03-03T10:36:34.825+06:00  WARN 20708 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-03T10:36:36.002+06:00  INFO 20708 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
-2026-03-03T10:36:36.011+06:00  INFO 20708 --- [           main] c.n.s.ScholarShelfApplication            : Started ScholarShelfApplication in 20.795 seconds (process running for 21.69)
+2026-03-03T11:36:33.397+06:00  INFO 2424 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T11:36:33.644+06:00  INFO 2424 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T11:36:33.787+06:00  INFO 2424 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T11:36:34.378+06:00 DEBUG 2424 --- [           main] c.n.s.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-03-03T11:36:34.818+06:00  INFO 2424 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-03T11:36:38.812+06:00  WARN 2424 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-03T11:36:41.624+06:00  INFO 2424 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-03-03T11:36:41.641+06:00  INFO 2424 --- [           main] c.n.s.ScholarShelfApplication            : Started ScholarShelfApplication in 19.711 seconds (process running for 20.449)
 Hibernate: 
     select
         count(*) 
     from
         categories c1_0
-2026-03-03T10:36:36.137+06:00  INFO 20708 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default categories...
+2026-03-03T11:36:41.892+06:00  INFO 2424 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default users...
 Hibernate: 
     select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-Hibernate: 
-    select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-Hibernate: 
-    select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-Hibernate: 
-    select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-Hibernate: 
-    select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-Hibernate: 
-    select
-        c1_0.id 
-    from
-        categories c1_0 
-    where
-        c1_0.name=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        categories
-        (description, name) 
-    values
-        (?, ?)
-2026-03-03T10:36:36.304+06:00  INFO 20708 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default categories created successfully.
-Hibernate: 
-    select
-        count(*) 
-    from
-        users u1_0
-2026-03-03T10:36:36.307+06:00  INFO 20708 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default users...
-Hibernate: 
-    select
-        u1_0.id 
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
     from
         users u1_0 
     where
-        u1_0.email=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        users
-        (active, address, created_at, email, full_name, password, phone, profile_image_url, role) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        u1_0.email=?
 Hibernate: 
     select
-        u1_0.id 
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role,
+        b1_0.seller_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.title 
+    from
+        users u1_0 
+    left join
+        books b1_0 
+            on u1_0.id=b1_0.seller_id 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        sm1_0.sender_id,
+        sm1_0.id,
+        sm1_0.content,
+        sm1_0.is_read,
+        sm1_0.receiver_id,
+        sm1_0.sent_at 
+    from
+        messages sm1_0 
+    where
+        sm1_0.sender_id=?
+Hibernate: 
+    select
+        r1_0.reviewer_id,
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating 
+    from
+        reviews r1_0 
+    where
+        r1_0.reviewer_id=?
+Hibernate: 
+    select
+        rm1_0.receiver_id,
+        rm1_0.id,
+        rm1_0.content,
+        rm1_0.is_read,
+        rm1_0.sender_id,
+        rm1_0.sent_at 
+    from
+        messages rm1_0 
+    where
+        rm1_0.receiver_id=?
+Hibernate: 
+    select
+        er1_0.buyer_id,
+        er1_0.id,
+        er1_0.book_id,
+        er1_0.created_at,
+        er1_0.message,
+        er1_0.status,
+        er1_0.updated_at 
+    from
+        exchange_requests er1_0 
+    where
+        er1_0.buyer_id=?
+Hibernate: 
+    update
+        users 
+    set
+        active=?,
+        address=?,
+        email=?,
+        full_name=?,
+        password=?,
+        phone=?,
+        profile_image_url=?,
+        role=? 
+    where
+        id=?
+2026-03-03T11:36:42.305+06:00  INFO 2424 --- [           main] c.n.scholarshelf.config.DataInitializer  : Activated existing user: admin@scholarshelf.com
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
     from
         users u1_0 
     where
-        u1_0.email=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        users
-        (active, address, created_at, email, full_name, password, phone, profile_image_url, role) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        u1_0.email=?
 Hibernate: 
     select
-        u1_0.id 
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
     from
         users u1_0 
     where
-        u1_0.email=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        users
-        (active, address, created_at, email, full_name, password, phone, profile_image_url, role) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        u1_0.email=?
 Hibernate: 
     select
-        u1_0.id 
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
     from
         users u1_0 
     where
-        u1_0.email=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    insert 
-    into
-        users
-        (active, address, created_at, email, full_name, password, phone, profile_image_url, role) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?)
-2026-03-03T10:36:36.448+06:00  INFO 20708 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default users created successfully. Password for all users: password123
-2026-03-03T10:36:36.449+06:00  WARN 20708 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-03-03T10:36:36.450+06:00  WARN 20708 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+        u1_0.email=?
+2026-03-03T11:36:42.318+06:00  INFO 2424 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default users ready. Password for all users: password123
+2026-03-03T11:36:42.319+06:00  WARN 2424 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-03-03T11:36:42.319+06:00  WARN 2424 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
