@@ -21,6 +21,7 @@ public class BookMapper {
                 .bookCondition(book.getBookCondition().name())
                 .imageUrl(book.getImageUrl())
                 .available(book.getAvailable())
+                .quantity(book.getQuantity() != null ? book.getQuantity() : 1)
                 .createdAt(book.getCreatedAt())
                 .sellerName(book.getSeller() != null ? book.getSeller().getFullName() : null)
                 .sellerId(book.getSeller() != null ? book.getSeller().getId() : null)

@@ -60,6 +60,7 @@ public class BookServiceImpl implements BookService {
                 .available(true)
                 .seller(seller)
                 .category(category)
+                .quantity(request.getQuantity() != null ? request.getQuantity() : 1)
                 .build();
 
         book = bookRepository.save(book);
@@ -92,6 +93,7 @@ public class BookServiceImpl implements BookService {
         book.setBookCondition(BookCondition.valueOf(request.getBookCondition().toUpperCase()));
         book.setImageUrl(request.getImageUrl());
         book.setCategory(category);
+        if (request.getQuantity() != null) book.setQuantity(request.getQuantity());
 
         book = bookRepository.save(book);
         BookResponse response = BookMapper.toResponse(book);
@@ -213,6 +215,7 @@ public class BookServiceImpl implements BookService {
                 .available(true)
                 .seller(seller)
                 .category(category)
+                .quantity(request.getQuantity() != null ? request.getQuantity() : 1)
                 .build();
 
         book = bookRepository.save(book);
@@ -243,6 +246,7 @@ public class BookServiceImpl implements BookService {
             book.setImageUrl(request.getImageUrl());
         }
         book.setCategory(category);
+        if (request.getQuantity() != null) book.setQuantity(request.getQuantity());
 
         book = bookRepository.save(book);
         BookResponse response = BookMapper.toResponse(book);

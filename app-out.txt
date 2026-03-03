@@ -1,0 +1,2800 @@
+Starting a Gradle Daemon, 7 stopped Daemons could not be reused, use --status for details
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-03-03T12:17:19.546+06:00  INFO 26864 --- [           main] c.n.s.ScholarShelfApplication            : Starting ScholarShelfApplication using Java 17.0.12 with PID 26864 (D:\3-2\SpringBootProjects\ScholarShelf\build\classes\java\main started by NILOY in D:\3-2\SpringBootProjects\ScholarShelf)
+2026-03-03T12:17:19.554+06:00 DEBUG 26864 --- [           main] c.n.s.ScholarShelfApplication            : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-03-03T12:17:19.555+06:00  INFO 26864 --- [           main] c.n.s.ScholarShelfApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T12:17:21.468+06:00  INFO 26864 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T12:17:21.627+06:00  INFO 26864 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 6 JPA repository interfaces.
+2026-03-03T12:17:22.525+06:00  INFO 26864 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-03-03T12:17:22.542+06:00  INFO 26864 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T12:17:22.542+06:00  INFO 26864 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-03T12:17:22.629+06:00  INFO 26864 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2713 ms
+2026-03-03T12:17:22.818+06:00  INFO 26864 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-03T12:17:22.911+06:00  INFO 26864 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-03-03T12:17:23.708+06:00  INFO 26864 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T12:17:23.757+06:00  INFO 26864 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T12:17:23.966+06:00  INFO 26864 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5c5c784c
+2026-03-03T12:17:23.969+06:00  INFO 26864 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T12:17:24.082+06:00  INFO 26864 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/ScholarShelfDB]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: ScholarShelfDB/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T12:17:25.795+06:00  INFO 26864 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T12:17:25.925+06:00  INFO 26864 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T12:17:26.023+06:00  INFO 26864 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T12:17:26.364+06:00 DEBUG 26864 --- [           main] c.n.s.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-03-03T12:17:26.527+06:00  INFO 26864 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-03T12:17:28.549+06:00  WARN 26864 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-03T12:17:29.626+06:00  INFO 26864 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-03-03T12:17:29.636+06:00  INFO 26864 --- [           main] c.n.s.ScholarShelfApplication            : Started ScholarShelfApplication in 10.783 seconds (process running for 11.394)
+Hibernate: 
+    select
+        count(*) 
+    from
+        categories c1_0
+2026-03-03T12:17:29.794+06:00  INFO 26864 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default users...
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:17:30.033+06:00  INFO 26864 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default users ready. Password for all users: password123
+2026-03-03T12:17:30.034+06:00  WARN 26864 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-03-03T12:17:30.034+06:00  WARN 26864 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-03-03T12:17:52.029+06:00  INFO 26864 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T12:17:52.030+06:00  INFO 26864 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T12:17:52.031+06:00  INFO 26864 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=? 
+    order by
+        r1_0.created_at desc
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:18:57.546+06:00 DEBUG 26864 --- [nio-8080-exec-4] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:18:57.739+06:00 DEBUG 26864 --- [io-8080-exec-10] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:18:57.748+06:00 DEBUG 26864 --- [nio-8080-exec-2] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:18:57.747+06:00 DEBUG 26864 --- [nio-8080-exec-1] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:18:57.878+06:00 DEBUG 26864 --- [nio-8080-exec-6] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:18:57.885+06:00 ERROR 26864 --- [nio-8080-exec-6] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:02.659+06:00 DEBUG 26864 --- [nio-8080-exec-9] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=? 
+    order by
+        r1_0.created_at desc
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        w1_0.user_id,
+        w1_1.id,
+        w1_1.author,
+        w1_1.available,
+        w1_1.book_condition,
+        w1_1.category_id,
+        w1_1.created_at,
+        w1_1.description,
+        w1_1.image_url,
+        w1_1.isbn,
+        w1_1.price,
+        w1_1.quantity,
+        w1_1.seller_id,
+        w1_1.title 
+    from
+        wishlist w1_0 
+    join
+        books w1_1 
+            on w1_1.id=w1_0.book_id 
+    where
+        w1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:02.762+06:00 DEBUG 26864 --- [nio-8080-exec-5] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:02.792+06:00 DEBUG 26864 --- [nio-8080-exec-3] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:02.796+06:00 ERROR 26864 --- [nio-8080-exec-3] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:23.290+06:00 DEBUG 26864 --- [nio-8080-exec-7] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=? 
+    order by
+        r1_0.created_at desc
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        w1_0.user_id,
+        w1_1.id,
+        w1_1.author,
+        w1_1.available,
+        w1_1.book_condition,
+        w1_1.category_id,
+        w1_1.created_at,
+        w1_1.description,
+        w1_1.image_url,
+        w1_1.isbn,
+        w1_1.price,
+        w1_1.quantity,
+        w1_1.seller_id,
+        w1_1.title 
+    from
+        wishlist w1_0 
+    join
+        books w1_1 
+            on w1_1.id=w1_0.book_id 
+    where
+        w1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:23.486+06:00 DEBUG 26864 --- [nio-8080-exec-8] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:23.585+06:00 DEBUG 26864 --- [nio-8080-exec-4] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:23.588+06:00 ERROR 26864 --- [nio-8080-exec-4] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:26.387+06:00 DEBUG 26864 --- [io-8080-exec-10] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=? 
+    order by
+        r1_0.created_at desc
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        w1_0.user_id,
+        w1_1.id,
+        w1_1.author,
+        w1_1.available,
+        w1_1.book_condition,
+        w1_1.category_id,
+        w1_1.created_at,
+        w1_1.description,
+        w1_1.image_url,
+        w1_1.isbn,
+        w1_1.price,
+        w1_1.quantity,
+        w1_1.seller_id,
+        w1_1.title 
+    from
+        wishlist w1_0 
+    join
+        books w1_1 
+            on w1_1.id=w1_0.book_id 
+    where
+        w1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:26.464+06:00 DEBUG 26864 --- [nio-8080-exec-1] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:26.486+06:00 DEBUG 26864 --- [nio-8080-exec-2] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:26.489+06:00 ERROR 26864 --- [nio-8080-exec-2] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:38.193+06:00 DEBUG 26864 --- [nio-8080-exec-6] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.book_id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=? 
+    order by
+        r1_0.created_at desc
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        w1_0.user_id,
+        w1_1.id,
+        w1_1.author,
+        w1_1.available,
+        w1_1.book_condition,
+        w1_1.category_id,
+        w1_1.created_at,
+        w1_1.description,
+        w1_1.image_url,
+        w1_1.isbn,
+        w1_1.price,
+        w1_1.quantity,
+        w1_1.seller_id,
+        w1_1.title 
+    from
+        wishlist w1_0 
+    join
+        books w1_1 
+            on w1_1.id=w1_0.book_id 
+    where
+        w1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:38.290+06:00 DEBUG 26864 --- [nio-8080-exec-9] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:38.292+06:00 DEBUG 26864 --- [nio-8080-exec-5] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:38.294+06:00 DEBUG 26864 --- [nio-8080-exec-3] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:38.330+06:00 DEBUG 26864 --- [nio-8080-exec-7] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:38.334+06:00 ERROR 26864 --- [nio-8080-exec-7] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:39.408+06:00 DEBUG 26864 --- [nio-8080-exec-8] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.category_id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.available=true 
+    order by
+        b1_0.created_at desc 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        r1_0.book_id,
+        r1_0.id,
+        r1_0.comment,
+        r1_0.created_at,
+        r1_0.rating,
+        r1_0.reviewer_id 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        avg(r1_0.rating) 
+    from
+        reviews r1_0 
+    where
+        r1_0.book_id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.description,
+        c1_0.name 
+    from
+        categories c1_0
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        b1_0.category_id,
+        b1_0.id,
+        b1_0.author,
+        b1_0.available,
+        b1_0.book_condition,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.image_url,
+        b1_0.isbn,
+        b1_0.price,
+        b1_0.quantity,
+        b1_0.seller_id,
+        b1_0.title 
+    from
+        books b1_0 
+    where
+        b1_0.category_id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:39.489+06:00 DEBUG 26864 --- [nio-8080-exec-4] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.address,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.profile_image_url,
+        u1_0.role 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-03T12:19:39.508+06:00 DEBUG 26864 --- [io-8080-exec-10] c.n.s.security.CustomUserDetailsService  : Loading user: admin@scholarshelf.com with role: ADMIN
+2026-03-03T12:19:39.511+06:00 ERROR 26864 --- [io-8080-exec-10] c.n.s.exception.GlobalExceptionHandler   : Unexpected error occurred: 
+
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.18.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at com.niloy.scholarshelf.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.3.jar:7.0.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.5.jar:7.0.5]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.18.jar:11.0.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
