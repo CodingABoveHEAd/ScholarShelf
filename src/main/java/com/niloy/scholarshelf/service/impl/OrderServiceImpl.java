@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         bookRepository.save(book);
 
         // Build order
-        BigDecimal unitPrice = book.getPrice();
+        BigDecimal unitPrice = BigDecimal.valueOf(book.getPrice());
         BigDecimal subtotal = unitPrice.multiply(BigDecimal.valueOf(request.getQuantity()));
 
         Order order = Order.builder()
