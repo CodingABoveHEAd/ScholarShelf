@@ -45,7 +45,7 @@ public class Book {
 
     private String imageUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Builder.Default
     private Integer quantity = 1;
 
@@ -81,5 +81,12 @@ public class Book {
     @ManyToMany(mappedBy = "wishlist", fetch = FetchType.LAZY)
     @Builder.Default
     private Set<User> wishlistedBy = new HashSet<>();
+
+    @PostLoad
+    private void setDefaultQuantity() {
+        if (this.quantity == null) {
+            this.quantity = 1;
+        }
+    }
 }
 

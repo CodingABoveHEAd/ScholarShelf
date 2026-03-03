@@ -27,6 +27,7 @@ public interface ExchangeRequestRepository extends JpaRepository<ExchangeRequest
     long countByStatus(RequestStatus status);
 
     /** Check if a buyer has an active (PENDING or ACCEPTED) request for a specific book. */
-    // boolean existsByBuyerIdAndBookIdAndStatusIn(Long buyerId, Long bookId, List<RequestStatus> statuses);
+    @Query("SELECT COUNT(er) > 0 FROM ExchangeRequest er WHERE er.buyer.id = :buyerId AND er.book.id = :bookId AND er.status IN :statuses")
+    boolean existsByBuyerIdAndBookIdAndStatusIn(@Param("buyerId") Long buyerId, @Param("bookId") Long bookId, @Param("statuses") List<RequestStatus> statuses);
 }
 
