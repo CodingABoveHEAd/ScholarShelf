@@ -1,7 +1,8 @@
+Starting a Gradle Daemon, 1 busy and 1 incompatible and 3 stopped Daemons could not be reused, use --status for details
 > Task :compileJava UP-TO-DATE
-> Task :processResources
-> Task :classes
-> Task :resolveMainClassName
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
 
 > Task :bootRun
 
@@ -14,22 +15,22 @@
 
  :: Spring Boot ::                (v4.0.3)
 
-2026-03-03T12:41:24.253+06:00  INFO 20208 --- [           main] c.n.s.ScholarShelfApplication            : Starting ScholarShelfApplication using Java 17.0.12 with PID 20208 (D:\3-2\SpringBootProjects\ScholarShelf\build\classes\java\main started by NILOY in D:\3-2\SpringBootProjects\ScholarShelf)
-2026-03-03T12:41:24.265+06:00 DEBUG 20208 --- [           main] c.n.s.ScholarShelfApplication            : Running with Spring Boot v4.0.3, Spring v7.0.5
-2026-03-03T12:41:24.268+06:00  INFO 20208 --- [           main] c.n.s.ScholarShelfApplication            : No active profile set, falling back to 1 default profile: "default"
-2026-03-03T12:41:29.590+06:00  INFO 20208 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-03T12:41:29.887+06:00  INFO 20208 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 267 ms. Found 8 JPA repository interfaces.
-2026-03-03T12:41:32.012+06:00  INFO 20208 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-03-03T12:41:32.059+06:00  INFO 20208 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-03T12:41:32.060+06:00  INFO 20208 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
-2026-03-03T12:41:32.284+06:00  INFO 20208 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 6579 ms
-2026-03-03T12:41:32.774+06:00  INFO 20208 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-03-03T12:41:33.049+06:00  INFO 20208 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
-2026-03-03T12:41:35.072+06:00  INFO 20208 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-03T12:41:35.244+06:00  INFO 20208 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-03T12:41:35.942+06:00  INFO 20208 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@91a1005
-2026-03-03T12:41:35.954+06:00  INFO 20208 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-03T12:41:36.344+06:00  INFO 20208 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-03-03T13:10:18.128+06:00  INFO 22348 --- [           main] c.n.s.ScholarShelfApplication            : Starting ScholarShelfApplication using Java 17.0.12 with PID 22348 (D:\3-2\SpringBootProjects\ScholarShelf\build\classes\java\main started by NILOY in D:\3-2\SpringBootProjects\ScholarShelf)
+2026-03-03T13:10:18.138+06:00 DEBUG 22348 --- [           main] c.n.s.ScholarShelfApplication            : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-03-03T13:10:18.140+06:00  INFO 22348 --- [           main] c.n.s.ScholarShelfApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T13:10:21.479+06:00  INFO 22348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T13:10:21.731+06:00  INFO 22348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 230 ms. Found 8 JPA repository interfaces.
+2026-03-03T13:10:23.511+06:00  INFO 22348 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-03-03T13:10:23.546+06:00  INFO 22348 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T13:10:23.547+06:00  INFO 22348 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-03T13:10:23.741+06:00  INFO 22348 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4846 ms
+2026-03-03T13:10:24.156+06:00  INFO 22348 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-03T13:10:24.356+06:00  INFO 22348 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-03-03T13:10:26.059+06:00  INFO 22348 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T13:10:26.186+06:00  INFO 22348 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T13:10:26.640+06:00  INFO 22348 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@116915f1
+2026-03-03T13:10:26.644+06:00  INFO 22348 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T13:10:26.869+06:00  INFO 22348 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/ScholarShelfDB]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -41,53 +42,20 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-03T12:41:41.582+06:00  INFO 20208 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-Hibernate: 
-    create table order_items (
-        id bigint generated by default as identity,
-        ordered_quantity integer not null,
-        unit_price numeric(10,2) not null,
-        book_id bigint not null,
-        order_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table orders (
-        id bigint generated by default as identity,
-        order_date timestamp(6) not null,
-        status varchar(255) not null check ((status in ('PLACED','CANCELLED'))),
-        total_price numeric(10,2) not null,
-        buyer_id bigint not null,
-        primary key (id)
-    )
-Hibernate: 
-    alter table if exists order_items 
-       add constraint FKi4ptndslo2pyfp9r1x0eulh9g 
-       foreign key (book_id) 
-       references books
-Hibernate: 
-    alter table if exists order_items 
-       add constraint FKbioxgbv59vetrxe0ejfubep1w 
-       foreign key (order_id) 
-       references orders
-Hibernate: 
-    alter table if exists orders 
-       add constraint FKhtx3insd5ge6w486omk4fnk54 
-       foreign key (buyer_id) 
-       references users
-2026-03-03T12:41:42.106+06:00  INFO 20208 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-03T12:41:42.342+06:00  INFO 20208 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-03T12:41:43.217+06:00 DEBUG 20208 --- [           main] c.n.s.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
-2026-03-03T12:41:43.541+06:00  INFO 20208 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2026-03-03T12:41:48.999+06:00  WARN 20208 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-03T12:41:51.473+06:00  INFO 20208 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
-2026-03-03T12:41:51.492+06:00  INFO 20208 --- [           main] c.n.s.ScholarShelfApplication            : Started ScholarShelfApplication in 29.067 seconds (process running for 30.92)
+2026-03-03T13:10:30.404+06:00  INFO 22348 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T13:10:30.680+06:00  INFO 22348 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T13:10:30.913+06:00  INFO 22348 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T13:10:31.566+06:00 DEBUG 22348 --- [           main] c.n.s.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-03-03T13:10:31.806+06:00  INFO 22348 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-03T13:10:36.725+06:00  WARN 22348 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-03T13:10:40.195+06:00  INFO 22348 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-03-03T13:10:40.225+06:00  INFO 22348 --- [           main] c.n.s.ScholarShelfApplication            : Started ScholarShelfApplication in 23.359 seconds (process running for 24.702)
 Hibernate: 
     select
         count(*) 
     from
         categories c1_0
-2026-03-03T12:41:51.749+06:00  INFO 20208 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default users...
+2026-03-03T13:10:40.531+06:00  INFO 22348 --- [           main] c.n.scholarshelf.config.DataInitializer  : Initializing default users...
 Hibernate: 
     select
         u1_0.id,
@@ -152,6 +120,6 @@ Hibernate:
         users u1_0 
     where
         u1_0.email=?
-2026-03-03T12:41:52.273+06:00  INFO 20208 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default users ready. Password for all users: password123
-2026-03-03T12:41:52.275+06:00  WARN 20208 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-03-03T12:41:52.276+06:00  WARN 20208 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-03-03T13:10:41.062+06:00  INFO 22348 --- [           main] c.n.scholarshelf.config.DataInitializer  : Default users ready. Password for all users: password123
+2026-03-03T13:10:41.063+06:00  WARN 22348 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-03-03T13:10:41.064+06:00  WARN 22348 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'

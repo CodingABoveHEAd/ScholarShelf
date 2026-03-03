@@ -134,6 +134,7 @@ public class AdminWebController {
                 .bookCondition(book.getBookCondition())
                 .categoryId(book.getCategoryId())
                 .imageUrl(book.getImageUrl())
+                .quantity(book.getQuantity() != null ? book.getQuantity() : 1)
                 .build();
         model.addAttribute("bookRequest", bookRequest);
         model.addAttribute("bookId", id);

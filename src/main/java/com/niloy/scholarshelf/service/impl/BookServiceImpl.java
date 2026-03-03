@@ -93,7 +93,11 @@ public class BookServiceImpl implements BookService {
         book.setBookCondition(BookCondition.valueOf(request.getBookCondition().toUpperCase()));
         book.setImageUrl(request.getImageUrl());
         book.setCategory(category);
-        if (request.getQuantity() != null) book.setQuantity(request.getQuantity());
+        if (request.getQuantity() != null) {
+            book.setQuantity(request.getQuantity());
+            // Restore availability if stock is replenished
+            if (request.getQuantity() > 0) book.setAvailable(true);
+        }
 
         book = bookRepository.save(book);
         BookResponse response = BookMapper.toResponse(book);
@@ -130,7 +134,8 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = true)
     public Page<BookResponse> getAllAvailableBooks(Pageable pageable) {
-        return bookRepository.findByAvailableTrue(pageable)
+        // Returns ALL books (including out-of-stock); availability shown as a tag in the UI
+        return bookRepository.findAllByOrderByCreatedAtDesc(pageable)
                 .map(book -> {
                     BookResponse r = BookMapper.toResponse(book);
                     r.setAverageRating(reviewRepository.findAverageRatingByBookId(book.getId()));
@@ -141,15 +146,16 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = true)
     public Page<BookResponse> searchBooks(String keyword, Long categoryId, Pageable pageable) {
+        // Shows all books regardless of availability; out-of-stock shown with a badge in the UI
         Page<Book> books;
         if (keyword != null && !keyword.isBlank() && categoryId != null) {
-            books = bookRepository.searchBooksByCategory(keyword, categoryId, pageable);
+            books = bookRepository.searchAllBooksByCategory(keyword, categoryId, pageable);
         } else if (keyword != null && !keyword.isBlank()) {
-            books = bookRepository.searchBooks(keyword, pageable);
+            books = bookRepository.searchAllBooks(keyword, pageable);
         } else if (categoryId != null) {
-            books = bookRepository.findByAvailableTrueAndCategoryId(categoryId, pageable);
+            books = bookRepository.findByCategory_IdOrderByCreatedAtDesc(categoryId, pageable);
         } else {
-            books = bookRepository.findByAvailableTrue(pageable);
+            books = bookRepository.findAllByOrderByCreatedAtDesc(pageable);
         }
 
         return books.map(book -> {
@@ -246,7 +252,11 @@ public class BookServiceImpl implements BookService {
             book.setImageUrl(request.getImageUrl());
         }
         book.setCategory(category);
-        if (request.getQuantity() != null) book.setQuantity(request.getQuantity());
+        if (request.getQuantity() != null) {
+            book.setQuantity(request.getQuantity());
+            // Restore availability if stock is replenished
+            if (request.getQuantity() > 0) book.setAvailable(true);
+        }
 
         book = bookRepository.save(book);
         BookResponse response = BookMapper.toResponse(book);

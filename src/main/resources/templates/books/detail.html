@@ -24,11 +24,14 @@
                     <span class="badge bg-info fs-6" th:text="${book.bookCondition}">Condition</span>
                     <span class="badge bg-secondary fs-6" th:text="${book.categoryName}">Category</span>
                     <span class="badge fs-6" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
-                          th:text="${book.available} ? 'Available' : 'Sold'"></span>
+                          th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
                 </div>
 
-                <div class="alert alert-info">
+                <div th:if="${book.available}" class="alert alert-success">
                     <strong>📦 In Stock:</strong> <span th:text="${book.quantity}">0</span> copies available
+                </div>
+                <div th:unless="${book.available}" class="alert alert-danger">
+                    <strong>📦 Out of Stock</strong> — Currently unavailable. The seller may restock soon.
                 </div>
 
                 <div class="mb-3" th:if="${averageRating != null && averageRating > 0}">
@@ -62,7 +65,13 @@
 
                 <!-- Action Buttons -->
                 <div class="mt-4" sec:authorize="hasRole('BUYER')">
-                    <!-- Order Now -->
+                    <!-- Out of Stock notice -->
+                    <div th:unless="${book.available}" class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        This book is currently <strong>out of stock</strong>. You can add it to your wishlist and come back later.
+                    </div>
+
+                    <!-- Order Now (only when available) -->
                     <div th:if="${book.available}" class="card border-success mb-3">
                         <div class="card-body">
                             <h5 class="card-title text-success"><i class="bi bi-bag-check"></i> Order Now</h5>
