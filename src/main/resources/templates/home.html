@@ -60,6 +60,9 @@
                                                 <span class="badge bg-info" th:text="${inner.bookCondition}">Cond</span>
                                                 <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
                                             </p>
+                                            <p class="card-text small text-muted mb-2">
+                                                📦 <span th:text="${inner.quantity}">0</span> in stock
+                                            </p>
                                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                                 <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
                                                 <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
@@ -107,6 +110,9 @@
                             <p class="card-text small mb-1">
                                 <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
                                 <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                            </p>
+                            <p class="card-text small text-muted mb-2">
+                                📦 <span th:text="${book.quantity}">0</span> copies available
                             </p>
                             <div class="mt-auto pt-2">
                                 <div class="d-flex justify-content-between align-items-center">

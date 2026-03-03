@@ -24,6 +24,7 @@ public class BookResponse {
     private String bookCondition;
     private String imageUrl;
     private Boolean available;
+    private Integer quantity;
     private LocalDateTime createdAt;
     private String sellerName;
     private Long sellerId;

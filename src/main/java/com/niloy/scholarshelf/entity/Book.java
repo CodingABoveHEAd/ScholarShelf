@@ -47,6 +47,10 @@ public class Book {
 
     @Column(nullable = false)
     @Builder.Default
+    private Integer quantity = 1;
+
+    @Column(nullable = false)
+    @Builder.Default
     private Boolean available = true;
 
     @Column(nullable = false, updatable = false)

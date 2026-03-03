@@ -38,5 +38,10 @@ public class BookRequest {
     private Long categoryId;
 
     private String imageUrl;
+
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be at least 1")
+    @Builder.Default
+    private Integer quantity = 1;
 }
 

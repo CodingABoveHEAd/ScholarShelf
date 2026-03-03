@@ -27,6 +27,10 @@
                           th:text="${book.available} ? 'Available' : 'Sold'"></span>
                 </div>
 
+                <div class="alert alert-info">
+                    <strong>📦 In Stock:</strong> <span th:text="${book.quantity}">0</span> copies available
+                </div>
+
                 <div class="mb-3" th:if="${averageRating != null && averageRating > 0}">
                     <span th:each="i : ${#numbers.sequence(1, 5)}">
                         <i th:classappend="${i <= averageRating} ? 'bi-star-fill text-warning' : 'bi-star text-muted'" class="bi"></i>

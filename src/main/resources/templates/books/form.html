@@ -41,6 +41,13 @@
             </div>
 
             <div class="col-md-4">
+                <label for="quantity" class="form-label">Quantity (Stock) *</label>
+                <input type="number" min="1" class="form-control" id="quantity" th:field="*{quantity}"
+                       th:classappend="${#fields.hasErrors('quantity')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
+            </div>
+
+            <div class="col-md-4">
                 <label for="bookCondition" class="form-label">Condition *</label>
                 <select class="form-select" id="bookCondition" th:field="*{bookCondition}">
                     <option value="">-- Select --</option>

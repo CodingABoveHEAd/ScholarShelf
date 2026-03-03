@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +47,16 @@ public class ExchangeRequestServiceImpl implements ExchangeRequestService {
             throw new IllegalStateException("Book is no longer available");
         }
 
+        // Check if buyer already has an active (PENDING or ACCEPTED) request for this book
+        boolean hasActiveRequest = exchangeRequestRepository.existsByBuyerIdAndBookIdAndStatusIn(
+                buyer.getId(),
+                book.getId(),
+                List.of(RequestStatus.PENDING, RequestStatus.ACCEPTED)
+        );
+        if (hasActiveRequest) {
+            throw new IllegalStateException("You already have an active request for this book. Please wait for the seller to respond or cancel your existing request.");
+        }
+
         ExchangeRequest exchangeRequest = ExchangeRequest.builder()
                 .buyer(buyer)
                 .book(book)
@@ -73,8 +82,13 @@ public class ExchangeRequestServiceImpl implements ExchangeRequestService {
         }
 
         request.setStatus(RequestStatus.ACCEPTED);
-        request.getBook().setAvailable(false);
-        bookRepository.save(request.getBook());
+        // Decrement quantity; if none left, mark as unavailable
+        Book book = request.getBook();
+        book.setQuantity(book.getQuantity() - 1);
+        if (book.getQuantity() <= 0) {
+            book.setAvailable(false);
+        }
+        bookRepository.save(book);
 
         request = exchangeRequestRepository.save(request);
         return ExchangeRequestMapper.toResponse(request);

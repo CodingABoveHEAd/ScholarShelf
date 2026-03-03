@@ -40,6 +40,7 @@
                             <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
                         </p>
                         <p class="small text-muted mb-1"><i class="bi bi-shop"></i> <span th:text="${book.sellerName}">Seller</span></p>
+                        <p class="small text-muted mb-1">📦 <span th:text="${book.quantity}">0</span> in stock</p>
                         <div class="mt-auto pt-2">
                             <p class="fw-bold text-success mb-2">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></p>
                             <div class="d-flex gap-1">
