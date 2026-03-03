@@ -2,6 +2,7 @@ package com.niloy.scholarshelf.controller.api;
 
 import com.niloy.scholarshelf.dto.request.BookRequest;
 import com.niloy.scholarshelf.dto.response.BookResponse;
+import com.niloy.scholarshelf.dto.response.BookStockResponse;
 import com.niloy.scholarshelf.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -73,6 +74,19 @@ public class BookApiController {
     public ResponseEntity<Void> deleteBook(@PathVariable Long id, Authentication authentication) {
         bookService.deleteBook(id, authentication.getName());
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/stock")
+    @Operation(summary = "Get book stock", description = "Returns current stock info for a book")
+    public ResponseEntity<BookStockResponse> getBookStock(@PathVariable Long id) {
+        BookResponse book = bookService.getBookById(id);
+        return ResponseEntity.ok(BookStockResponse.builder()
+                .bookId(book.getId())
+                .bookTitle(book.getTitle())
+                .stockCount(book.getQuantity() != null ? book.getQuantity() : 0)
+                .available(book.getAvailable())
+                .totalOrdered(null)
+                .build());
     }
 
     @GetMapping("/my-books")
