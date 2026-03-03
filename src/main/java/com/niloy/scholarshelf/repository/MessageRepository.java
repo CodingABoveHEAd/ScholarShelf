@@ -23,8 +23,9 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
                                    @Param("userId2") Long userId2);
 
     /** Get distinct users who have exchanged messages with the given user. */
-    @Query("SELECT DISTINCT CASE WHEN m.sender.id = :userId THEN m.receiver ELSE m.sender END " +
-            "FROM Message m WHERE m.sender.id = :userId OR m.receiver.id = :userId")
+    @Query("SELECT DISTINCT u FROM User u WHERE " +
+            "u.id IN (SELECT m.sender.id FROM Message m WHERE m.receiver.id = :userId) " +
+            "OR u.id IN (SELECT m.receiver.id FROM Message m WHERE m.sender.id = :userId)")
     List<com.niloy.scholarshelf.entity.User> findChatPartners(@Param("userId") Long userId);
 
     /** Count unread messages for a user. */

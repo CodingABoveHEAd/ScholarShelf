@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +56,13 @@ public class GlobalExceptionHandler {
         log.error("Validation errors: {}", errors);
         model.addAttribute("validationErrors", errors);
         return "error/400";
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleNoResourceFound(NoResourceFoundException ex) {
+        // Silently ignore missing static resources (e.g. favicon.ico)
+        return "error/404";
     }
 
     @ExceptionHandler(Exception.class)

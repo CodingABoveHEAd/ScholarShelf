@@ -132,20 +132,20 @@
 
 <!-- FOOTER fragment -->
 <footer th:fragment="footer" class="bg-dark text-light py-4 mt-auto">
-    <div class="container-fluid px-3 px-lg-4">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-4 text-start">
                 <h5><i class="bi bi-book"></i> ScholarShelf</h5>
                 <p class="text-secondary">A platform for exchanging and discovering books. Connect with buyers and sellers in your community.</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-md-4 text-center">
                 <h6>Quick Links</h6>
                 <ul class="list-unstyled">
                     <li><a class="text-secondary text-decoration-none" th:href="@{/books}">Browse Books</a></li>
                     <li><a class="text-secondary text-decoration-none" th:href="@{/auth/register}">Register</a></li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-md-4 text-md-end text-center">
                 <h6>Resources</h6>
                 <ul class="list-unstyled">
                     <li><a class="text-secondary text-decoration-none" th:href="@{/swagger-ui.html}">API Docs</a></li>

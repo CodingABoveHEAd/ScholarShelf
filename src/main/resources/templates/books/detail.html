@@ -16,118 +16,131 @@
             </div>
 
             <!-- Book Details -->
-            <div class="col-md-8">
-                <h2 class="fw-bold" th:text="${book.title}">Book Title</h2>
-                <p class="text-muted fs-5"><i class="bi bi-person"></i> <span th:text="${book.author}">Author</span></p>
+<div class="col-md-8">
+    <h2 class="fw-bold" th:text="${book.title}">Book Title</h2>
+    <p class="text-muted fs-5"><i class="bi bi-person"></i> <span th:text="${book.author}">Author</span></p>
 
-                <div class="mb-3">
-                    <span class="badge bg-info fs-6" th:text="${book.bookCondition}">Condition</span>
-                    <span class="badge bg-secondary fs-6" th:text="${book.categoryName}">Category</span>
-                    <span class="badge fs-6" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
-                          th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
-                </div>
+    <div class="mb-3">
+        <span class="badge bg-info fs-6" th:text="${book.bookCondition}">Condition</span>
+        <span class="badge bg-secondary fs-6" th:text="${book.categoryName}">Category</span>
+        <span class="badge fs-6" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+              th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+    </div>
 
-                <div th:if="${book.available}" class="alert alert-success">
-                    <strong>📦 In Stock:</strong> <span th:text="${book.quantity}">0</span> copies available
-                </div>
-                <div th:unless="${book.available}" class="alert alert-danger">
-                    <strong>📦 Out of Stock</strong> — Currently unavailable. The seller may restock soon.
-                </div>
+    <div th:if="${book.available}" class="alert alert-success">
+        <strong>📦 In Stock:</strong> <span th:text="${book.quantity}">0</span> copies available
+    </div>
+    <div th:unless="${book.available}" class="alert alert-danger">
+        <strong>📦 Out of Stock</strong> — Currently unavailable. The seller may restock soon.
+    </div>
 
-                <div class="mb-3" th:if="${averageRating != null && averageRating > 0}">
-                    <span th:each="i : ${#numbers.sequence(1, 5)}">
-                        <i th:classappend="${i <= averageRating} ? 'bi-star-fill text-warning' : 'bi-star text-muted'" class="bi"></i>
-                    </span>
-                    <span class="ms-2 text-muted" th:text="${#numbers.formatDecimal(averageRating, 1, 1)} + ' / 5.0'"></span>
-                    <span class="text-muted" th:text="'(' + ${#lists.size(reviews)} + ' reviews)'"></span>
-                </div>
+    <!-- Rating Label -->
+    <div class="mb-3">
+        <span class="fw-bold me-2"><strong>Rating:</strong></span>
+        <span th:if="${averageRating != null && averageRating > 0}">
+            <span th:each="i : ${#numbers.sequence(1, 5)}">
+                <i th:classappend="${i <= averageRating} ? 'bi-star-fill text-warning' : 'bi-star text-muted'" class="bi"></i>
+            </span>
+            <span class="ms-2 text-muted" th:text="${#numbers.formatDecimal(averageRating, 1, 1)} + ' / 5.0'"></span>
+            <span class="text-muted" th:text="'(' + ${#lists.size(reviews)} + ' reviews)'"></span>
+        </span>
+        <span th:unless="${averageRating != null && averageRating > 0}" class="text-muted">No ratings yet</span>
+    </div>
 
-                <h3 class="text-success fw-bold">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></h3>
+    <!-- Price Label -->
+    <div class="mb-3">
+        <span class="fw-bold me-1"><strong>Price:</strong> </span>
+        <span class="text-success fw-bold fs-4">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+    </div>
 
-                <p class="mt-3" th:text="${book.description}">Book description</p>
+    <!-- Description Label -->
+    <div class="mb-3">
+        <p class="fw-bold mb-1"><strong>Description:</strong></p>
+        <p class="mt-0" th:text="${book.description}">Book description</p>
+    </div>
 
-                <table class="table table-sm table-borderless w-auto mt-3">
-                    <tr th:if="${book.isbn != null && !book.isbn.isEmpty()}">
-                        <td class="fw-bold">ISBN:</td>
-                        <td th:text="${book.isbn}"></td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold">Seller:</td>
-                        <td>
-                            <span th:text="${book.sellerName}">Seller</span>
-                            <a th:href="@{/messages/{id}(id=${book.sellerId})}" class="btn btn-sm btn-outline-primary ms-2"
-                               sec:authorize="isAuthenticated()">
-                                <i class="bi bi-chat-dots"></i> Chat
-                            </a>
-                        </td>
-                    </tr>
-                </table>
+    <table class="table table-sm table-borderless w-auto mt-3">
+        <tr th:if="${book.isbn != null && !book.isbn.isEmpty()}">
+            <td class="fw-bold">ISBN:</td>
+            <td th:text="${book.isbn}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold">Seller:</td>
+            <td>
+                <span th:text="${book.sellerName}">Seller</span>
+                <a th:href="@{/messages/{id}(id=${book.sellerId})}" class="btn btn-sm btn-outline-primary ms-2"
+                   sec:authorize="isAuthenticated()">
+                    <i class="bi bi-chat-dots"></i> Chat
+                </a>
+            </td>
+        </tr>
+    </table>
 
-                <!-- Action Buttons -->
-                <div class="mt-4" sec:authorize="hasRole('BUYER')">
-                    <!-- Out of Stock notice -->
-                    <div th:unless="${book.available}" class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                        This book is currently <strong>out of stock</strong>. You can add it to your wishlist and come back later.
+    <!-- Action Buttons -->
+    <div class="mt-4" sec:authorize="hasRole('BUYER')">
+        <!-- Out of Stock notice -->
+        <div th:unless="${book.available}" class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            This book is currently <strong>out of stock</strong>. You can add it to your wishlist and come back later.
+        </div>
+
+        <!-- Order Now (only when available) -->
+        <div th:if="${book.available}" class="card border-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-success"><i class="bi bi-bag-check"></i> Order Now</h5>
+                <form th:action="@{/buyer/orders/place}" method="post">
+                    <input type="hidden" name="bookId" th:value="${book.id}">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <label class="fw-semibold mb-0">Qty:</label>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="changeQty(-1)">−</button>
+                        <input type="number" id="orderQty" name="quantity"
+                               class="form-control text-center fw-bold"
+                               style="width:80px"
+                               value="1" min="1"
+                               th:max="${book.quantity}"
+                               th:data-price="${book.price}"
+                               oninput="updateTotal()">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="changeQty(1)">+</button>
+                        <span class="text-muted small" th:text="'(max ' + ${book.quantity} + ')'"></span>
                     </div>
-
-                    <!-- Order Now (only when available) -->
-                    <div th:if="${book.available}" class="card border-success mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title text-success"><i class="bi bi-bag-check"></i> Order Now</h5>
-                            <form th:action="@{/buyer/orders/place}" method="post">
-                                <input type="hidden" name="bookId" th:value="${book.id}">
-                                <div class="d-flex align-items-center gap-2 mb-3">
-                                    <label class="fw-semibold mb-0">Qty:</label>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="changeQty(-1)">−</button>
-                                    <input type="number" id="orderQty" name="quantity"
-                                           class="form-control text-center fw-bold"
-                                           style="width:80px"
-                                           value="1" min="1"
-                                           th:max="${book.quantity}"
-                                           th:data-price="${book.price}"
-                                           oninput="updateTotal()">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="changeQty(1)">+</button>
-                                    <span class="text-muted small" th:text="'(max ' + ${book.quantity} + ')'"></span>
-                                </div>
-                                <div class="mb-3">
-                                    <span class="fs-5 fw-bold text-success">
-                                        Total: $<span id="orderTotal" th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span>
-                                    </span>
-                                </div>
-                                <button type="submit" class="btn btn-success"><i class="bi bi-bag-check-fill"></i> Place Order</button>
-                            </form>
-                        </div>
+                    <div class="mb-3">
+                        <span class="fs-5 fw-bold text-success">
+                            Total: $<span id="orderTotal" th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span>
+                        </span>
                     </div>
-
-                    <!-- Exchange Request -->
-                    <div th:if="${book.available}" class="card border-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-arrow-left-right"></i> Request Exchange</h5>
-                            <form th:action="@{/buyer/exchange/request}" method="post">
-                                <input type="hidden" name="bookId" th:value="${book.id}">
-                                <div class="mb-2">
-                                    <textarea name="message" class="form-control" rows="2"
-                                              placeholder="Write a message to the seller..."></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Send Request</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Wishlist -->
-                    <div th:if="${inWishlist != null && inWishlist}">
-                        <form th:action="@{/buyer/wishlist/remove/{id}(id=${book.id})}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-heart-fill"></i> Remove from Wishlist</button>
-                        </form>
-                    </div>
-                    <div th:if="${inWishlist == null || !inWishlist}">
-                        <form th:action="@{/buyer/wishlist/add/{id}(id=${book.id})}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-heart"></i> Add to Wishlist</button>
-                        </form>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-bag-check-fill"></i> Place Order</button>
+                </form>
             </div>
+        </div>
+
+        <!-- Exchange Request -->
+        <div th:if="${book.available}" class="card border-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-arrow-left-right"></i> Request Exchange</h5>
+                <form th:action="@{/buyer/exchange/request}" method="post">
+                    <input type="hidden" name="bookId" th:value="${book.id}">
+                    <div class="mb-2">
+                        <textarea name="message" class="form-control" rows="2"
+                                  placeholder="Write a message to the seller..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Send Request</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Wishlist -->
+        <div th:if="${inWishlist != null && inWishlist}">
+            <form th:action="@{/buyer/wishlist/remove/{id}(id=${book.id})}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger"><i class="bi bi-heart-fill"></i> Remove from Wishlist</button>
+            </form>
+        </div>
+        <div th:if="${inWishlist == null || !inWishlist}">
+            <form th:action="@{/buyer/wishlist/add/{id}(id=${book.id})}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger"><i class="bi bi-heart"></i> Add to Wishlist</button>
+            </form>
+        </div>
+    </div>
+</div>
         </div>
 
         <!-- Reviews Section -->
