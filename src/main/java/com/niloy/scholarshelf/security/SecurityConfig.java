@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/buyer/**").hasRole("BUYER")
                         // API endpoints
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/books/search/**", "/api/v1/books/list/**").permitAll()
+                        .requestMatchers("/api/v1/books/search/**", "/api/v1/books/list/**", "/api/v1/books/*/stock").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         // All other requests require authentication
                         .anyRequest().authenticated()

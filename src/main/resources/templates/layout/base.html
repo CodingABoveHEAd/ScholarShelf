@@ -36,6 +36,9 @@
                 <li class="nav-item" sec:authorize="hasRole('BUYER')">
                     <a class="nav-link" th:href="@{/buyer/exchanges}"><i class="bi bi-arrow-left-right"></i> My Requests</a>
                 </li>
+                <li class="nav-item" sec:authorize="hasRole('BUYER')">
+                    <a class="nav-link" th:href="@{/buyer/orders}"><i class="bi bi-bag"></i> My Orders</a>
+                </li>
 
                 <!-- Seller Links -->
                 <li class="nav-item" sec:authorize="hasRole('SELLER')">
@@ -57,6 +60,9 @@
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:href="@{/admin/categories}"><i class="bi bi-tags"></i> Categories</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" th:href="@{/admin/orders}"><i class="bi bi-clipboard-data"></i> Orders</a>
                 </li>
             </ul>
 
