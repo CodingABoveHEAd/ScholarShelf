@@ -77,6 +77,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<UserResponse> getUsersByRole(String role) {
+        Role roleEnum = Role.valueOf(role.toUpperCase());
+        return userRepository.findByRole(roleEnum).stream()
+                .map(UserMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public long getUserCountByRole(String role) {
         return userRepository.countByRole(Role.valueOf(role.toUpperCase()));
     }

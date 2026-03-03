@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -177,6 +178,76 @@ public class BookServiceImpl implements BookService {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + bookId));
         bookRepository.delete(book);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookResponse> getAllBooks() {
+        return bookRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")).stream()
+                .map(book -> {
+                    BookResponse r = BookMapper.toResponse(book);
+                    r.setAverageRating(reviewRepository.findAverageRatingByBookId(book.getId()));
+                    return r;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public BookResponse adminCreateBook(BookRequest request, Long sellerId) {
+        log.info("Admin creating book for seller id: {}", sellerId);
+
+        User seller = userRepository.findById(sellerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Seller not found with id: " + sellerId));
+
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + request.getCategoryId()));
+
+        Book book = Book.builder()
+                .title(request.getTitle())
+                .author(request.getAuthor())
+                .isbn(request.getIsbn())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .bookCondition(BookCondition.valueOf(request.getBookCondition().toUpperCase()))
+                .imageUrl(request.getImageUrl())
+                .available(true)
+                .seller(seller)
+                .category(category)
+                .build();
+
+        book = bookRepository.save(book);
+        log.info("Admin created book with id: {}", book.getId());
+
+        BookResponse response = BookMapper.toResponse(book);
+        response.setAverageRating(0.0);
+        return response;
+    }
+
+    @Override
+    public BookResponse adminUpdateBook(Long bookId, BookRequest request) {
+        log.info("Admin updating book: {}", bookId);
+
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + bookId));
+
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
+        book.setTitle(request.getTitle());
+        book.setAuthor(request.getAuthor());
+        book.setIsbn(request.getIsbn());
+        book.setDescription(request.getDescription());
+        book.setPrice(request.getPrice());
+        book.setBookCondition(BookCondition.valueOf(request.getBookCondition().toUpperCase()));
+        if (request.getImageUrl() != null && !request.getImageUrl().isBlank()) {
+            book.setImageUrl(request.getImageUrl());
+        }
+        book.setCategory(category);
+
+        book = bookRepository.save(book);
+        BookResponse response = BookMapper.toResponse(book);
+        response.setAverageRating(reviewRepository.findAverageRatingByBookId(bookId));
+        return response;
     }
 }
 

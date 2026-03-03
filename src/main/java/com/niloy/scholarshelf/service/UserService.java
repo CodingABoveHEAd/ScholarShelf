@@ -20,5 +20,7 @@ public interface UserService {
     long getTotalUsers();
 
     long getUserCountByRole(String role);
+
+    List<UserResponse> getUsersByRole(String role);
 }
 

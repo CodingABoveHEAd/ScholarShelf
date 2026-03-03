@@ -26,6 +26,13 @@ public interface BookService {
 
     List<BookResponse> getBooksBySeller(String sellerEmail);
 
+    // Admin operations
+    List<BookResponse> getAllBooks();
+
+    BookResponse adminCreateBook(BookRequest request, Long sellerId);
+
+    BookResponse adminUpdateBook(Long bookId, BookRequest request);
+
     void adminDeleteBook(Long bookId);
 }
 
