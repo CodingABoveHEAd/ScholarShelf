@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Repository for Book entity operations.
@@ -48,6 +47,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b WHERE b.available = true AND " +
             "(LOWER(b.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
             " LOWER(b.author) LIKE LOWER(CONCAT('%', :keyword, '%')))")
+    Page<Book> searchAvailableBooks(@Param("keyword") String keyword, Pageable pageable);
 
     List<Book> findByBookCondition(BookCondition condition);
 
