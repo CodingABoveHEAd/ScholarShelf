@@ -17,12 +17,13 @@ import com.niloy.scholarshelf.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -262,6 +263,64 @@ public class BookServiceImpl implements BookService {
         BookResponse response = BookMapper.toResponse(book);
         response.setAverageRating(reviewRepository.findAverageRatingByBookId(bookId));
         return response;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<String, List<BookResponse>> getBooksByWriter(int maxAuthors, int booksPerAuthor) {
+        List<String> authors = bookRepository.findDistinctAuthorsWithAvailableBooks();
+        Map<String, List<BookResponse>> result = new LinkedHashMap<>();
+
+        int count = 0;
+        for (String author : authors) {
+            if (count >= maxAuthors) break;
+            List<BookResponse> books = bookRepository
+                    .findTopAvailableBooksByAuthor(author, PageRequest.of(0, booksPerAuthor))
+                    .stream()
+                    .map(book -> {
+                        BookResponse r = BookMapper.toResponse(book);
+                        r.setAverageRating(reviewRepository.findAverageRatingByBookId(book.getId()));
+                        return r;
+                    })
+                    .collect(Collectors.toList());
+            if (!books.isEmpty()) {
+                result.put(author, books);
+                count++;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookResponse> getBooksByBestCondition(int limit) {
+        // Try conditions in order of quality: NEW, LIKE_NEW, GOOD
+        for (BookCondition condition : new BookCondition[]{BookCondition.NEW, BookCondition.LIKE_NEW, BookCondition.GOOD}) {
+            List<Book> books = bookRepository.findAvailableBooksByCondition(condition, PageRequest.of(0, limit));
+            if (!books.isEmpty()) {
+                return books.stream()
+                        .map(book -> {
+                            BookResponse r = BookMapper.toResponse(book);
+                            r.setAverageRating(reviewRepository.findAverageRatingByBookId(book.getId()));
+                            return r;
+                        })
+                        .collect(Collectors.toList());
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookResponse> getSuggestedBooks(Long bookId, Long categoryId, int limit) {
+        return bookRepository.findSuggestedBooks(categoryId, bookId, PageRequest.of(0, limit))
+                .stream()
+                .map(book -> {
+                    BookResponse r = BookMapper.toResponse(book);
+                    r.setAverageRating(reviewRepository.findAverageRatingByBookId(book.getId()));
+                    return r;
+                })
+                .collect(Collectors.toList());
     }
 }
 
