@@ -1,1 +1,5 @@
 ./gradlew bootRun
+
+psql -h dpg-d6k1chjh46gs73e5qho0-a -p 5432 -U scholarshelf_db_user -d scholarshelf-db -f scholarshelf.sql
+
+postgresql://scholarshelf_db_user:CTp4FH8KwTE20YjCIrYYkRuZQ6Wg2Fpk@dpg-d6k1chjh46gs73e5qho0-a.singapore-postgres.render.com/scholarshelf_db
