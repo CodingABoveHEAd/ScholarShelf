@@ -58,4 +58,40 @@ public class OrderApiController {
     public ResponseEntity<List<BookStockResponse>> stockReport() {
         return ResponseEntity.ok(orderService.getStockReport());
     }
+
+    /**
+     * POST /api/orders/{id}/accept — buyer confirms their own pending order
+     */
+    @PostMapping("/{id}/accept")
+    @PreAuthorize("hasRole('BUYER')")
+    public ResponseEntity<OrderResponse> acceptOrder(@PathVariable Long id, Authentication authentication) {
+        return ResponseEntity.ok(orderService.acceptOrder(id, authentication.getName()));
+    }
+
+    /**
+     * POST /api/orders/{id}/cancel — buyer cancels their own order
+     */
+    @PostMapping("/{id}/cancel")
+    @PreAuthorize("hasRole('BUYER')")
+    public ResponseEntity<OrderResponse> cancelOrder(@PathVariable Long id, Authentication authentication) {
+        return ResponseEntity.ok(orderService.cancelOrder(id, authentication.getName()));
+    }
+
+    /**
+     * POST /api/admin/orders/{id}/accept — admin accepts any order
+     */
+    @PostMapping("/admin/{id}/accept")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<OrderResponse> adminAcceptOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.adminAcceptOrder(id));
+    }
+
+    /**
+     * POST /api/admin/orders/{id}/cancel — admin cancels any order
+     */
+    @PostMapping("/admin/{id}/cancel")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<OrderResponse> adminCancelOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.adminCancelOrder(id));
+    }
 }
