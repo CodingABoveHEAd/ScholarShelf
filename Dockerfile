@@ -4,6 +4,10 @@ WORKDIR /app
 
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle gradle
+
+# 🔧 FIX: give execute permission to gradlew
+RUN chmod +x gradlew
+
 RUN ./gradlew dependencies --no-daemon
 
 COPY src src
@@ -16,5 +20,4 @@ WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-jar", "app.jar"]
