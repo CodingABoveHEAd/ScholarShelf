@@ -1,9 +1,6 @@
-# Dockerfile --> build one container image. It defines what’s inside the container and how to run it.
-
 # -------- Build stage --------
 FROM gradle:8.5-jdk17 AS builder
- #--all subsequent command inside /app
-WORKDIR /app  
+WORKDIR /app
 
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle gradle
@@ -19,4 +16,5 @@ WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-jar", "app.jar"]
