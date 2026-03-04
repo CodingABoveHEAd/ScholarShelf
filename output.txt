@@ -1945,3 +1945,4 @@ Action:
 
 Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
 
+./gradlew bootRun
