@@ -41,6 +41,9 @@ dependencies {
 
 	runtimeOnly 'org.postgresql:postgresql'
 
+	// Cloudinary
+	implementation 'com.cloudinary:cloudinary-http44:1.39.0'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
