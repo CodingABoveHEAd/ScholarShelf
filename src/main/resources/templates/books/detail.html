@@ -88,7 +88,7 @@
         <div th:if="${book.available}" class="card border-success mb-3">
             <div class="card-body">
                 <h5 class="card-title text-success"><i class="bi bi-bag-check"></i> Order Now</h5>
-                <form th:action="@{/buyer/orders/place}" method="post">
+                <form th:action="@{/buyer/orders/checkout}" method="post">
                     <input type="hidden" name="bookId" th:value="${book.id}">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <label class="fw-semibold mb-0">Qty:</label>
@@ -108,7 +108,7 @@
                             Total: $<span id="orderTotal" th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span>
                         </span>
                     </div>
-                    <button type="submit" class="btn btn-success"><i class="bi bi-bag-check-fill"></i> Place Order</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-cart-check"></i> Proceed to Checkout</button>
                 </form>
             </div>
         </div>
