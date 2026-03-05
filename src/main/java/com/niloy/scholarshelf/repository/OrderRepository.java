@@ -14,5 +14,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByBuyerIdOrderByOrderDateDesc(Long buyerId);
 
     @Query("SELECT o FROM Order o JOIN FETCH o.buyer JOIN FETCH o.items i JOIN FETCH i.book ORDER BY o.orderDate DESC")
+   
     List<Order> findAllWithDetails();
 }
