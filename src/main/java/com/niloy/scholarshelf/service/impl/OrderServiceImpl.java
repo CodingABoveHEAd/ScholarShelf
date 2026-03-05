@@ -8,6 +8,7 @@ import com.niloy.scholarshelf.entity.Book;
 import com.niloy.scholarshelf.entity.Order;
 import com.niloy.scholarshelf.entity.OrderItem;
 import com.niloy.scholarshelf.entity.User;
+import com.niloy.scholarshelf.enums.OrderStatus;
 import com.niloy.scholarshelf.exception.ResourceNotFoundException;
 import com.niloy.scholarshelf.repository.BookRepository;
 import com.niloy.scholarshelf.repository.OrderItemRepository;
@@ -55,21 +56,14 @@ public class OrderServiceImpl implements OrderService {
                     ") exceeds available stock (" + stock + ").");
         }
 
-        // Deduct stock
-        int newStock = stock - request.getQuantity();
-        book.setQuantity(newStock);
-        if (newStock <= 0) {
-            book.setAvailable(false);
-        }
-        bookRepository.save(book);
-
-        // Build order
+        // Build order with PENDING status (stock not yet deducted until confirmation)
         BigDecimal unitPrice = BigDecimal.valueOf(book.getPrice());
         BigDecimal subtotal = unitPrice.multiply(BigDecimal.valueOf(request.getQuantity()));
 
         Order order = Order.builder()
                 .buyer(buyer)
                 .totalPrice(subtotal)
+                .status(OrderStatus.PENDING)
                 .build();
 
         OrderItem item = OrderItem.builder()
@@ -82,8 +76,142 @@ public class OrderServiceImpl implements OrderService {
         order.getItems().add(item);
         order = orderRepository.save(order);
 
-        log.info("Order placed successfully with id: {}", order.getId());
+        log.info("Order created with PENDING status, id: {}", order.getId());
         return toResponse(order);
+    }
+
+    @Override
+    public OrderResponse acceptOrder(Long orderId, String userEmail) {
+        log.info("Accepting order {} by user {}", orderId, userEmail);
+
+        User buyer = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+
+        if (!order.getBuyer().getId().equals(buyer.getId())) {
+            throw new IllegalStateException("You can only accept your own orders.");
+        }
+
+        if (order.getStatus() != OrderStatus.PENDING) {
+            throw new IllegalStateException("Only pending orders can be accepted. Current status: " + order.getStatus());
+        }
+
+        // Deduct stock now
+        deductStock(order);
+
+        order.setStatus(OrderStatus.ACCEPTED);
+        order = orderRepository.save(order);
+        log.info("Order {} accepted successfully", orderId);
+        return toResponse(order);
+    }
+
+    @Override
+    public OrderResponse adminAcceptOrder(Long orderId) {
+        log.info("Admin accepting order {}", orderId);
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+
+        if (order.getStatus() != OrderStatus.PENDING && order.getStatus() != OrderStatus.PLACED) {
+            throw new IllegalStateException("Order cannot be accepted. Current status: " + order.getStatus());
+        }
+
+        // Deduct stock if it was still PENDING
+        if (order.getStatus() == OrderStatus.PENDING) {
+            deductStock(order);
+        }
+
+        order.setStatus(OrderStatus.ACCEPTED);
+        order = orderRepository.save(order);
+        log.info("Order {} accepted by admin", orderId);
+        return toResponse(order);
+    }
+
+    @Override
+    public OrderResponse cancelOrder(Long orderId, String userEmail) {
+        log.info("Cancelling order {} by user {}", orderId, userEmail);
+
+        User buyer = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+
+        if (!order.getBuyer().getId().equals(buyer.getId())) {
+            throw new IllegalStateException("You can only cancel your own orders.");
+        }
+
+        if (order.getStatus() == OrderStatus.CANCELLED) {
+            throw new IllegalStateException("Order is already cancelled.");
+        }
+
+        // Restore stock if it was already deducted (ACCEPTED or PLACED)
+        if (order.getStatus() == OrderStatus.ACCEPTED || order.getStatus() == OrderStatus.PLACED) {
+            restoreStock(order);
+        }
+
+        order.setStatus(OrderStatus.CANCELLED);
+        order = orderRepository.save(order);
+        log.info("Order {} cancelled by buyer", orderId);
+        return toResponse(order);
+    }
+
+    @Override
+    public OrderResponse adminCancelOrder(Long orderId) {
+        log.info("Admin cancelling order {}", orderId);
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+
+        if (order.getStatus() == OrderStatus.CANCELLED) {
+            throw new IllegalStateException("Order is already cancelled.");
+        }
+
+        // Restore stock if it was already deducted
+        if (order.getStatus() == OrderStatus.ACCEPTED || order.getStatus() == OrderStatus.PLACED) {
+            restoreStock(order);
+        }
+
+        order.setStatus(OrderStatus.CANCELLED);
+        order = orderRepository.save(order);
+        log.info("Order {} cancelled by admin", orderId);
+        return toResponse(order);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public OrderResponse getOrderById(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+        return toResponse(order);
+    }
+
+    private void deductStock(Order order) {
+        for (OrderItem item : order.getItems()) {
+            Book book = item.getBook();
+            int stock = book.getQuantity() != null ? book.getQuantity() : 0;
+            if (item.getOrderedQuantity() > stock) {
+                throw new IllegalStateException("Insufficient stock for book: " + book.getTitle());
+            }
+            int newStock = stock - item.getOrderedQuantity();
+            book.setQuantity(newStock);
+            if (newStock <= 0) {
+                book.setAvailable(false);
+            }
+            bookRepository.save(book);
+        }
+    }
+
+    private void restoreStock(Order order) {
+        for (OrderItem item : order.getItems()) {
+            Book book = item.getBook();
+            int stock = book.getQuantity() != null ? book.getQuantity() : 0;
+            book.setQuantity(stock + item.getOrderedQuantity());
+            book.setAvailable(true);
+            bookRepository.save(book);
+        }
     }
 
     @Override

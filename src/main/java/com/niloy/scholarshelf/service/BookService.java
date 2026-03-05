@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service interface for book operations.
@@ -34,5 +35,21 @@ public interface BookService {
     BookResponse adminUpdateBook(Long bookId, BookRequest request);
 
     void adminDeleteBook(Long bookId);
+
+    /**
+     * Get books grouped by writer/author for homepage display.
+     * Returns a map of author name -> list of BookResponse (limited per author).
+     */
+    Map<String, List<BookResponse>> getBooksByWriter(int maxAuthors, int booksPerAuthor);
+
+    /**
+     * Get books with the best condition (LIKE_NEW or NEW) for homepage display.
+     */
+    List<BookResponse> getBooksByBestCondition(int limit);
+
+    /**
+     * Get suggested books from the same category, excluding the current book.
+     */
+    List<BookResponse> getSuggestedBooks(Long bookId, Long categoryId, int limit);
 }
 

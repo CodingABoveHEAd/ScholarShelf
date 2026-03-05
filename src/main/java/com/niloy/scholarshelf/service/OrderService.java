@@ -28,4 +28,29 @@ public interface OrderService {
      * Get per-book stock report (admin): stock remaining and total ordered.
      */
     List<BookStockResponse> getStockReport();
+
+    /**
+     * Accept/confirm an order (buyer confirms their own pending order, or admin accepts).
+     */
+    OrderResponse acceptOrder(Long orderId, String userEmail);
+
+    /**
+     * Admin accepts/approves any order.
+     */
+    OrderResponse adminAcceptOrder(Long orderId);
+
+    /**
+     * Cancel an order. Buyer can cancel their own, admin can cancel any.
+     */
+    OrderResponse cancelOrder(Long orderId, String userEmail);
+
+    /**
+     * Admin cancels any order.
+     */
+    OrderResponse adminCancelOrder(Long orderId);
+
+    /**
+     * Get a single order by ID (for checkout review page).
+     */
+    OrderResponse getOrderById(Long orderId);
 }

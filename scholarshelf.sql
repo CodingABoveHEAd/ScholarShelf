@@ -221,7 +221,7 @@ CREATE TABLE public.orders (
     id bigint NOT NULL,
     order_date timestamp(6) without time zone NOT NULL,
     status character varying(255) NOT NULL,
-    CONSTRAINT orders_status_check CHECK (((status)::text = ANY ((ARRAY['PLACED'::character varying, 'CANCELLED'::character varying])::text[])))
+    CONSTRAINT orders_status_check CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'PLACED'::character varying, 'ACCEPTED'::character varying, 'CANCELLED'::character varying])::text[])))
 );
 
 

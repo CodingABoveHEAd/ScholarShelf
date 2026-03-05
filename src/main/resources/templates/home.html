@@ -668,6 +668,228 @@
         </div>
     </section>
 
+    <!-- Books by Writer Section -->
+    <section class="container my-5" th:if="${booksByWriter != null && !booksByWriter.isEmpty()}">
+        <h2 class="mb-4"><i class="bi bi-pen"></i> Books by Writer</h2>
+        <div th:each="entry : ${booksByWriter}" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-semibold mb-0">
+                    <i class="bi bi-person-badge text-primary"></i>
+                    <span th:text="${entry.key}">Author Name</span>
+                </h4>
+                <a th:href="@{/books(keyword=${entry.key})}" class="btn btn-sm btn-outline-primary">
+                    View all <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Mobile: 1 card per slide -->
+            <div class="d-block d-md-none">
+                <div th:id="'writerCarouselMobile_' + ${#strings.replace(entry.key, ' ', '_')}"
+                     class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <div th:each="book, iterStat : ${entry.value}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="px-2 py-2">
+                                <div class="card h-100 shadow-sm book-card">
+                                    <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                         class="card-img-top" alt="Book cover" style="height: 260px; object-fit: cover;">
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                        <p class="card-text text-muted small mb-1 text-truncate">
+                                            <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                        </p>
+                                        <p class="card-text small mb-2">
+                                            <span class="badge bg-info" th:text="${book.bookCondition}">Cond</span>
+                                            <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                        </p>
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                            <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                            th:data-bs-target="'#writerCarouselMobile_' + ${#strings.replace(entry.key, ' ', '_')}"
+                            data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            th:data-bs-target="'#writerCarouselMobile_' + ${#strings.replace(entry.key, ' ', '_')}"
+                            data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop: grid row -->
+            <div class="d-none d-md-block">
+                <div class="row row-cols-2 row-cols-lg-4 g-3">
+                    <div class="col" th:each="book : ${entry.value}">
+                        <div class="card h-100 shadow-sm book-card">
+                            <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                 class="card-img-top" alt="Book cover" style="height: 220px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column p-3">
+                                <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                <p class="card-text text-muted small mb-1 text-truncate">
+                                    <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                </p>
+                                <p class="card-text small mb-2">
+                                    <span class="badge bg-info" th:text="${book.bookCondition}">Cond</span>
+                                    <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                </p>
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books by Condition Section -->
+    <section class="bg-light py-5" th:if="${booksByCondition != null && !#lists.isEmpty(booksByCondition)}">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-award"></i> Top Condition Books</h2>
+                <span class="badge bg-success fs-6" th:text="${booksByCondition[0].bookCondition}">Condition</span>
+            </div>
+
+            <!-- Mobile: 1 per slide -->
+            <div class="d-block d-md-none">
+                <div id="conditionCarouselMobile" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <div th:each="book, iterStat : ${booksByCondition}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="px-2 py-2">
+                                <div class="card h-100 shadow-sm book-card">
+                                    <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                         class="card-img-top" alt="Book cover" style="height: 260px; object-fit: cover;">
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                        <p class="card-text text-muted small mb-1 text-truncate">
+                                            <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                        </p>
+                                        <p class="card-text small mb-2">
+                                            <span class="badge bg-success" th:text="${book.bookCondition}">Cond</span>
+                                            <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                        </p>
+                                        <p class="card-text small text-muted mb-2">
+                                            📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> in stock
+                                        </p>
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                            <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselMobile" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselMobile" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tablet: 2 per slide -->
+            <div class="d-none d-md-block d-lg-none">
+                <div id="conditionCarouselTablet" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <th:block th:with="chunkSize=2">
+                            <div th:each="book, iterStat : ${booksByCondition}"
+                                 th:if="${iterStat.index % chunkSize == 0}"
+                                 th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                <div class="row g-0 px-1 py-2">
+                                    <div th:each="inner, innerStat : ${booksByCondition}"
+                                         th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                         class="col-6 px-2">
+                                        <div class="card h-100 shadow-sm book-card">
+                                            <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                                 class="card-img-top" alt="Book cover" style="height: 240px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                                <p class="card-text text-muted small mb-1 text-truncate">
+                                                    <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                                </p>
+                                                <p class="card-text small mb-2">
+                                                    <span class="badge bg-success" th:text="${inner.bookCondition}">Cond</span>
+                                                    <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                </p>
+                                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                    <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                    <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselTablet" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselTablet" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop: 4 per slide -->
+            <div class="d-none d-lg-block">
+                <div id="conditionCarouselDesktop" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <th:block th:with="chunkSize=4">
+                            <div th:each="book, iterStat : ${booksByCondition}"
+                                 th:if="${iterStat.index % chunkSize == 0}"
+                                 th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                <div class="row row-cols-4 g-0 px-1 py-2">
+                                    <div th:each="inner, innerStat : ${booksByCondition}"
+                                         th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                         class="col px-2">
+                                        <div class="card h-100 shadow-sm book-card">
+                                            <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                                 class="card-img-top" alt="Book cover" style="height: 220px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                                <p class="card-text text-muted small mb-1 text-truncate">
+                                                    <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                                </p>
+                                                <p class="card-text small mb-2">
+                                                    <span class="badge bg-success" th:text="${inner.bookCondition}">Cond</span>
+                                                    <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                </p>
+                                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                    <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                    <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselDesktop" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselDesktop" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="container my-5">
         <h2 class="text-center mb-5">How It Works</h2>

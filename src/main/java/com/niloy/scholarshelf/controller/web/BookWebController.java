@@ -62,6 +62,10 @@ public class BookWebController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", reviewService.getAverageRating(id));
 
+        // Suggested books from same category
+        List<BookResponse> suggestedBooks = bookService.getSuggestedBooks(id, book.getCategoryId(), 8);
+        model.addAttribute("suggestedBooks", suggestedBooks);
+
         if (authentication != null) {
             boolean inWishlist = wishlistService.isInWishlist(id, authentication.getName());
             model.addAttribute("inWishlist", inWishlist);

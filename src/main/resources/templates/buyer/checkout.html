@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/base :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="~{layout/base :: nav}"></div>
+<div th:replace="~{layout/base :: alerts}"></div>
+
+<main class="flex-grow-1">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-4"><i class="bi bi-cart-check"></i> Review Your Order</h2>
+                <p class="text-muted mb-4">Please review your order details below before confirming.</p>
+
+                <!-- Order Summary Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white fw-bold">
+                        <i class="bi bi-bag"></i> Order Summary
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-4 pb-3 border-bottom">
+                            <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/120x160?text=No+Image'"
+                                 class="rounded me-4 shadow-sm" style="width:100px;height:140px;object-fit:cover;" alt="Book cover">
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-1" th:text="${book.title}">Book Title</h5>
+                                <p class="text-muted mb-1">
+                                    <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                </p>
+                                <div class="mb-2">
+                                    <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
+                                    <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                                    <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                                          th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                </div>
+                                <p class="text-muted small mb-0">
+                                    Seller: <span th:text="${book.sellerName}">Seller</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="table-responsive">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-muted">Unit Price</td>
+                                        <td class="text-end">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Quantity</td>
+                                        <td class="text-end"><span th:text="${quantity}">1</span></td>
+                                    </tr>
+                                    <tr class="border-top">
+                                        <td class="fw-bold fs-5">Total</td>
+                                        <td class="text-end fw-bold fs-5 text-success">
+                                            $<span th:text="${#numbers.formatDecimal(totalPrice, 1, 2)}">0.00</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Info Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light fw-bold">
+                        <i class="bi bi-info-circle"></i> Order Information
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2">
+                            <i class="bi bi-truck text-primary"></i>
+                            <strong>Delivery:</strong> Arranged directly with the seller after order confirmation.
+                        </p>
+                        <p class="mb-2">
+                            <i class="bi bi-chat-dots text-primary"></i>
+                            <strong>Communication:</strong> You can message the seller about pickup/delivery details.
+                        </p>
+                        <p class="mb-0 text-muted small">
+                            <i class="bi bi-shield-check"></i>
+                            Your order will be placed with <strong>PENDING</strong> status. You can confirm or cancel it from your orders page.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to Book
+                    </a>
+                    <form th:action="@{/buyer/orders/place}" method="post" class="d-inline">
+                        <input type="hidden" name="bookId" th:value="${book.id}">
+                        <input type="hidden" name="quantity" th:value="${quantity}">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-bag-check-fill"></i> Confirm Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{layout/base :: footer}"></div>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

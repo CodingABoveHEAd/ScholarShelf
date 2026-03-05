@@ -70,7 +70,9 @@
                                 <span class="me-3"><strong th:text="${order.buyerName}"></strong>
                                     <small class="text-muted" th:text="'(' + ${order.buyerEmail} + ')'"></small></span>
                                 <span class="badge ms-auto me-3"
-                                      th:classappend="${order.status.name() == 'PLACED'} ? 'bg-success' : 'bg-secondary'"
+                                      th:classappend="${order.status.name() == 'ACCEPTED'} ? 'bg-success' :
+                                                      (${order.status.name() == 'PENDING'} ? 'bg-warning text-dark' :
+                                                      (${order.status.name() == 'PLACED'} ? 'bg-info' : 'bg-secondary'))"
                                       th:text="${order.status}"></span>
                                 <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(order.totalPrice, 1, 2)}"></span></span>
                             </button>
@@ -104,6 +106,25 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <!-- Admin Action Buttons -->
+                                <div class="p-3 d-flex gap-2 justify-content-end border-top">
+                                    <form th:if="${order.status.name() == 'PENDING' || order.status.name() == 'PLACED'}"
+                                          th:action="@{/admin/orders/{id}/accept(id=${order.id})}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="bi bi-check-circle-fill"></i> Accept Order
+                                        </button>
+                                    </form>
+                                    <form th:if="${order.status.name() != 'CANCELLED'}"
+                                          th:action="@{/admin/orders/{id}/cancel(id=${order.id})}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to cancel this order?')">
+                                            <i class="bi bi-x-circle"></i> Cancel Order
+                                        </button>
+                                    </form>
+                                    <span th:if="${order.status.name() == 'CANCELLED'}" class="text-muted small align-self-center">
+                                        <i class="bi bi-info-circle"></i> This order has been cancelled
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
