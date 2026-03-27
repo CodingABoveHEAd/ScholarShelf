@@ -106,9 +106,153 @@ flowchart LR
 
 ## ER Diagram
 
-```mermaid
 
-```
+<style>
+#erd { padding: 1rem 0; overflow-x: auto; }
+#erd svg { max-width: 100%; height: auto; }
+</style>
+<div id="erd"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#2e2c3f' : '#EEEDFE',
+    primaryBorderColor: dark ? '#534AB7' : '#AFA9EC',
+    primaryTextColor: dark ? '#c2c0b6' : '#26215C',
+    secondaryColor: dark ? '#1a2a24' : '#E1F5EE',
+    tertiaryColor: dark ? '#2a1a1a' : '#FAECE7',
+  },
+});
+
+const diagram = `erDiagram
+    USER ||--o{ BOOK : "lists (seller)"
+    CATEGORY ||--o{ BOOK : "categorizes"
+    USER ||--o{ ORDER : "places (buyer)"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    BOOK ||--o{ ORDER_ITEM : "purchased in"
+    USER ||--o{ EXCHANGE_REQUEST : "creates"
+    BOOK ||--o{ EXCHANGE_REQUEST : "receives"
+    USER ||--o{ REVIEW : "writes"
+    BOOK ||--o{ REVIEW : "gets"
+    USER ||--o{ MESSAGE : "sends"
+    USER ||--o{ MESSAGE : "receives"
+    USER ||--o{ WISHLIST : "bookmarks"
+    BOOK ||--o{ WISHLIST : "bookmarked by"
+
+    USER {
+        long id PK
+        string full_name
+        string email
+        string password
+        string phone
+        string address
+        string profile_image_url
+        string role
+        boolean active
+        datetime created_at
+    }
+    CATEGORY {
+        long id PK
+        string name
+        string description
+    }
+    BOOK {
+        long id PK
+        long seller_id FK
+        long category_id FK
+        string title
+        string author
+        string isbn
+        text description
+        decimal price
+        string book_condition
+        string image_url
+        int quantity
+        boolean available
+        datetime created_at
+    }
+    ORDER {
+        long id PK
+        long buyer_id FK
+        datetime order_date
+        decimal total_price
+        string status
+    }
+    ORDER_ITEM {
+        long id PK
+        long order_id FK
+        long book_id FK
+        int ordered_quantity
+        decimal unit_price
+    }
+    EXCHANGE_REQUEST {
+        long id PK
+        long buyer_id FK
+        long book_id FK
+        text message
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+    REVIEW {
+        long id PK
+        long reviewer_id FK
+        long book_id FK
+        int rating
+        text comment
+        datetime created_at
+    }
+    MESSAGE {
+        long id PK
+        long sender_id FK
+        long receiver_id FK
+        text content
+        boolean is_read
+        datetime sent_at
+    }
+    WISHLIST {
+        long user_id FK
+        long book_id FK
+    }`;
+
+const { svg } = await mermaid.render('erd-svg', diagram);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+
+document.querySelectorAll('#erd svg .row-rect-odd path, #erd svg .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>
+
 
 ## Database Relationship Matrix
 
