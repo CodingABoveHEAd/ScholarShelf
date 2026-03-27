@@ -97,6 +97,7 @@ flowchart LR
     S --> C[Cloudinary Service]
 ```
 
+```mermaid
 ### Architectural Notes
 
 - Web controllers (Thymeleaf pages) and API controllers coexist in the same application.
@@ -196,6 +197,8 @@ erDiagram
         long user_id FK
         long book_id FK
     }
+
+```
 
 ## Database Relationship Matrix
 
