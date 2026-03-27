@@ -97,16 +97,10 @@ flowchart LR
     S --> C[Cloudinary Service]
 ```
 
-```mermaid
-### Architectural Notes
-
-- Web controllers (Thymeleaf pages) and API controllers coexist in the same application.
-- Security is stateless for API requests using JWT.
-- Business logic is centralized in services.
-- Persistence is managed via Spring Data JPA repositories.
-
 ## ER Diagram
 
+
+```mermaid
 erDiagram
     USER ||--o{ BOOK : "lists (seller)"
     CATEGORY ||--o{ BOOK : "categorizes"
@@ -197,8 +191,8 @@ erDiagram
         long user_id FK
         long book_id FK
     }
-
 ```
+
 
 ## Database Relationship Matrix
 
