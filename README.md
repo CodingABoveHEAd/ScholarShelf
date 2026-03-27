@@ -106,27 +106,21 @@ flowchart LR
 
 ## ER Diagram
 
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryBorderColor': '#000000', 'primaryTextColor': '#000000', 'lineColor': '#000000', 'fontFamily': 'system-ui, sans-serif', 'background': '#ffffff'}}}%%
 erDiagram
-    %% Core Relationships
-    USER ||--o{ BOOK : "lists (as seller)"
+    USER ||--o{ BOOK : "lists (seller)"
     CATEGORY ||--o{ BOOK : "categorizes"
-    USER ||--o{ ORDER : "places (as buyer)"
+    USER ||--o{ ORDER : "places (buyer)"
     ORDER ||--|{ ORDER_ITEM : "contains"
     BOOK ||--o{ ORDER_ITEM : "purchased in"
-  
-    %% User Interactions
     USER ||--o{ EXCHANGE_REQUEST : "creates"
     BOOK ||--o{ EXCHANGE_REQUEST : "receives"
     USER ||--o{ REVIEW : "writes"
     BOOK ||--o{ REVIEW : "gets"
     USER ||--o{ MESSAGE : "sends"
     USER ||--o{ MESSAGE : "receives"
-  
-    %% Many-to-Many Join Table
     USER ||--o{ WISHLIST : "bookmarks"
     BOOK ||--o{ WISHLIST : "bookmarked by"
-    %% Entity Definitions with PK/FK indicators
+
     USER {
         long id PK
         string full_name
