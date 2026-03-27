@@ -45,15 +45,15 @@ public class DataInitializer implements CommandLineRunner {
 
     private void initializeUsers() {
         log.info("Initializing default users...");
-        String encodedPassword = passwordEncoder.encode("password123");
+        String defaultPassword = "password123";
 
-        createOrActivateUser("Admin User", "admin@scholarshelf.com", encodedPassword, Role.ADMIN,
+        createOrActivateUser("Admin User", "admin@scholarshelf.com", defaultPassword, Role.ADMIN,
                 "+1234567890", "Dhaka, Bangladesh");
-        createOrActivateUser("John Seller", "seller@scholarshelf.com", encodedPassword, Role.SELLER,
+        createOrActivateUser("John Seller", "seller@scholarshelf.com", defaultPassword, Role.SELLER,
                 "+1234567891", "Chittagong, Bangladesh");
-        createOrActivateUser("Jane Buyer", "buyer@scholarshelf.com", encodedPassword, Role.BUYER,
+        createOrActivateUser("Jane Buyer", "buyer@scholarshelf.com", defaultPassword, Role.BUYER,
                 "+1234567892", "Sylhet, Bangladesh");
-        createOrActivateUser("Alice Seller", "alice@scholarshelf.com", encodedPassword, Role.SELLER,
+        createOrActivateUser("Alice Seller", "alice@scholarshelf.com", defaultPassword, Role.SELLER,
                 "+1234567893", "Rajshahi, Bangladesh");
 
         log.info("Default users ready. Password for all users: password123");
@@ -69,19 +69,48 @@ public class DataInitializer implements CommandLineRunner {
                                       String phone, String address) {
         var existingUser = userRepository.findByEmail(email);
         if (existingUser.isPresent()) {
-            // User exists - ensure they are active
+            // User exists - reconcile key fields so seeded credentials keep working.
             User user = existingUser.get();
+            boolean changed = false;
+
             if (!user.getActive()) {
                 user.setActive(true);
+                changed = true;
+            }
+
+            user.setPassword(passwordEncoder.encode(password));
+            changed = true;
+
+            if (user.getRole() != role) {
+                user.setRole(role);
+                changed = true;
+            }
+
+            if (!fullName.equals(user.getFullName())) {
+                user.setFullName(fullName);
+                changed = true;
+            }
+
+            if (!phone.equals(user.getPhone())) {
+                user.setPhone(phone);
+                changed = true;
+            }
+
+            if (!address.equals(user.getAddress())) {
+                user.setAddress(address);
+                changed = true;
+            }
+
+            if (changed) {
                 userRepository.save(user);
-                log.info("Activated existing user: {}", email);
+                log.info("Synchronized existing user: {}", email);
             }
         } else {
             // Create new user
             userRepository.save(User.builder()
                     .fullName(fullName)
                     .email(email)
-                    .password(password)
+                    .password(passwordEncoder.encode(password))
                     .role(role)
                     .phone(phone)
                     .address(address)
