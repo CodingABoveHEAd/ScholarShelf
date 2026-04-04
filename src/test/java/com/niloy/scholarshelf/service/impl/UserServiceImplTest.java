@@ -22,6 +22,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for UserServiceImpl using Mockito to mock dependencies and test the service logic.
+ * UserServiceImplTest focuses on testing the user management functionalities such as fetching all users, fetching a user by ID, toggling user active status, changing user role, and fetching user counts.
+ * Tests include successful scenarios and various failure cases such as user not found scenarios.   
+ */
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
@@ -36,6 +41,7 @@ class UserServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        
         testUser = User.builder()
                 .id(1L)
                 .fullName("Test User 1")
@@ -124,6 +130,7 @@ class UserServiceImplTest {
 
         assertNotNull(response);
         assertEquals("ADMIN", response.getRole());
+       
         verify(userRepository).save(any(User.class));
     }
 
@@ -151,6 +158,7 @@ class UserServiceImplTest {
         List<UserResponse> users = userService.getUsersByRole("SELLER");
 
         assertNotNull(users);
+        
         assertEquals(1, users.size());
         assertEquals("user2@example.com", users.get(0).getEmail());
     }
