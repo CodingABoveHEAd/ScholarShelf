@@ -32,6 +32,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(properties = {
         "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration"
 })
+
+/**
+ * Unit tests for AuthApiController using MockMvc to test the API endpoints.
+ */ 
 public class AuthApiControllerTest {
 
     private MockMvc mockMvc;
