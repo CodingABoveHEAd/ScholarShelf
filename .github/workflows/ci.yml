@@ -1,17 +1,23 @@
 # =============================================================================
-# ScholarShelf — Continuous Integration
+# ScholarShelf – Continuous Integration & Build Pipeline
 # =============================================================================
-# Runs on every push to main/develop and on every pull request targeting those
-# branches. The pipeline:
-#   1. Compiles the project with Gradle
-#   2. Runs the full test suite against a live PostgreSQL 15 instance
-#   3. Publishes the executable JAR as a build artifact
-#   4. Uploads test / build reports when a step fails (for easy debugging)
+# Workflow Overview:
+#   • Triggers: Push to main/develop branches, or pull requests to those branches
+#   • Environment: Java 17 + Gradle on Ubuntu Latest
+#   • Database: PostgreSQL 15 with health checks for integration tests
+#   • Pipeline Stages:
+#       1. Setup & Validation (checkout, JDK, Gradle wrapper)
+#       2. Build (compile & assemble JAR, skip tests)
+#       3. Test (run full test suite with live PostgreSQL)
+#       4. Reporting (publish reports & upload artifacts)
 # =============================================================================
 
-name: CI — Build & Test
+name: CI – Build & Test
 
-# ── Triggers ─────────────────────────────────────────────────────────────────
+# ═════════════════════════════════════════════════════════════════════════════
+# WORKFLOW TRIGGERS
+# ═════════════════════════════════════════════════════════════════════════════
+
 on:
   push:
     branches:
@@ -22,15 +28,22 @@ on:
       - main
       - develop
 
-# ── Job definition ────────────────────────────────────────────────────────────
+# ═════════════════════════════════════════════════════════════════════════════
+# JOB DEFINITION
+# ═════════════════════════════════════════════════════════════════════════════
+
 jobs:
   build-and-test:
     name: Build & Test (Java 17 / Gradle)
     runs-on: ubuntu-latest
 
-    # ── Backing services ──────────────────────────────────────────────────────
-    # A PostgreSQL 15 container is spun up automatically before the job steps
-    # run. The @SpringBootTest context-load test requires a live database.
+    # ═══════════════════════════════════════════════════════════════════════════
+    # BACKING SERVICES
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PostgreSQL 15 container spun up automatically for integration tests.
+    # The @SpringBootTest context-load test requires a live database instance.
+    # Health checks ensure DB readiness before pipeline steps begin.
+
     services:
       postgres:
         image: postgres:15
@@ -46,85 +59,98 @@ jobs:
         ports:
           - 5432:5432
 
-    # ── Environment ───────────────────────────────────────────────────────────
-    # All values come from repository Secrets (Settings → Secrets → Actions).
-    # The Spring Boot property files pick them up via ${ENV_VAR:fallback} syntax.
+    # ═══════════════════════════════════════════════════════════════════════════
+    # ENVIRONMENT VARIABLES
+    # ═══════════════════════════════════════════════════════════════════════════
+    # Database config uses local service. Cloudinary secrets loaded from 
+    # repository Secrets (GitHub Settings → Secrets → Actions).
+    # Spring Boot picks them up via ${ENV_VAR:fallback} syntax.
+
     env:
-      # --- Database -----------------------------------------------------------
+      # Database Configuration
       SPRING_DATASOURCE_URL:           jdbc:postgresql://localhost:5432/ScholarShelfDB
       SPRING_DATASOURCE_USERNAME:      postgres
       SPRING_DATASOURCE_PASSWORD:      admin
       SPRING_JPA_HIBERNATE_DDL_AUTO:   update
 
-      # --- Cloudinary (required for Spring context to load) -------------------
+      # Cloudinary Configuration (required for Spring context initialization)
       CLOUDINARY_CLOUD_NAME:  ${{ secrets.CLOUDINARY_CLOUD_NAME }}
       CLOUDINARY_API_KEY:     ${{ secrets.CLOUDINARY_API_KEY }}
       CLOUDINARY_API_SECRET:  ${{ secrets.CLOUDINARY_API_SECRET }}
 
-    # ── Steps ─────────────────────────────────────────────────────────────────
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PIPELINE STEPS
+    # ═══════════════════════════════════════════════════════════════════════════
+
     steps:
 
-      # 1. Fetch source code
+      # ─────────────────────────────────────────────────────────────────────────
+      # STAGE 1: SETUP & VALIDATION
+      # ─────────────────────────────────────────────────────────────────────────
+
       - name: Checkout source code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 2. Set up the JDK that matches toolchain in build.gradle (Java 17)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: temurin
-          cache: gradle           # caches ~/.gradle between runs → faster builds
+          cache: gradle
 
-      # 3. Ensure the Gradle wrapper script is executable on Linux runners
       - name: Grant Gradle wrapper execute permission
         run: chmod +x gradlew
 
-      # 4. Validate that the Gradle wrapper binary has not been tampered with
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v3
 
-      # 5. Compile sources and assemble the fat JAR (skip tests here — step 6
-      #    runs them in a separate phase so reports are always generated)
+      # ─────────────────────────────────────────────────────────────────────────
+      # STAGE 2: BUILD
+      # ─────────────────────────────────────────────────────────────────────────
+
       - name: Build with Gradle (compile + assemble)
         run: ./gradlew clean build -x test --no-daemon
 
-      # 6. Execute the full test suite
-      - name: Run tests
+      # ─────────────────────────────────────────────────────────────────────────
+      # STAGE 3: TEST
+      # ─────────────────────────────────────────────────────────────────────────
+
+      - name: Run test suite
         run: ./gradlew test --no-daemon
 
-      # 7. Publish the test report to the Summary page (always, even on failure)
-      - name: Publish test report
+      # ─────────────────────────────────────────────────────────────────────────
+      # STAGE 4: REPORTING & ARTIFACTS
+      # ─────────────────────────────────────────────────────────────────────────
+
+      - name: Publish JUnit test report
         uses: mikepenz/action-junit-report@v4
         if: always()
         with:
           report_paths: build/reports/tests/test/**/*.xml
           check_name:   JUnit Test Report
 
-      # 8. Upload human-readable HTML test report as an artifact on failure
-      - name: Upload HTML test report on failure
+      - name: Upload test report on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name:              test-report-html
-          path:              build/reports/tests/test/
-          retention-days:    7
+          name:           test-report-html
+          path:           build/reports/tests/test/
+          retention-days: 7
 
-      # 9. Upload build logs on failure to help diagnose compilation errors
       - name: Upload build logs on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name:              build-logs
-          path:              build/reports/problems/
-          retention-days:    7
+          name:           build-logs
+          path:           build/reports/problems/
+          retention-days: 7
 
-      # 10. Upload the executable JAR so it can be downloaded directly from
-      #     the Actions run without having to rebuild the project locally
       - name: Upload application JAR
         uses: actions/upload-artifact@v4
         if: success()
         with:
-          name:              scholarshelf-app-jar
-          path:              build/libs/*.jar
-          retention-days:    30
+          name:           scholarshelf-app-jar
+          path:           build/libs/*.jar
+          retention-days: 30
