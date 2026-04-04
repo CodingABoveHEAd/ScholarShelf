@@ -62,6 +62,28 @@ The project is designed with clean layered architecture (Controller -> Service -
 ## System Workflow Diagram
 
 ```mermaid
+flowchart TD
+    A[Visitor] --> B[Register or Login]
+    B --> C{Role}
+
+    C -->|Buyer| D[Browse and Search Books]
+    D --> E[Add to Wishlist or Place Order]
+    D --> F[Send Exchange Request]
+    D --> G[Review Book]
+    D --> H[Chat with Seller]
+
+    C -->|Seller| I[Create and Manage Listings]
+    I --> J[Receive Exchange Requests]
+    J --> K[Accept or Reject]
+    I --> H
+
+    C -->|Admin| L[Manage Users and Orders]
+    L --> M[View Stock and System Data]
+```
+  
+## Architectural Diagram
+
+```mermaid
 flowchart TB
     %% -------- Clients --------
     U[End Users]
