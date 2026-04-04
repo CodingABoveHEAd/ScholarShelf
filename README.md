@@ -162,26 +162,6 @@ flowchart TB
 ```
 
 ## ER Diagram
-
-```mermaid
-erDiagram
-    USER ||--o{ BOOK : "lists (seller)"
-    CATEGORY ||--o{ BOOK : "categorizes"
-    USER ||--o{ ORDER : "places (buyer)"
-    ORDER ||--|{ ORDER_ITEM : "contains"
-    BOOK ||--o{ ORDER_ITEM : "purchased in"
-    USER ||--o{ EXCHANGE_REQUEST : "creates"
-    BOOK ||--o{ EXCHANGE_REQUEST : "receives"
-    USER ||--o{ REVIEW : "writes"
-    BOOK ||--o{ REVIEW : "gets"
-    USER ||--o{ MESSAGE : "sends"
-    USER ||--o{ MESSAGE : "receives"
-    USER ||--o{ WISHLIST : "bookmarks"
-    BOOK ||--o{ WISHLIST : "bookmarked by"
-
-=======
-
-```mermaid
 erDiagram
     USER ||--o{ BOOK : "lists (seller)"
     CATEGORY ||--o{ BOOK : "categorizes"
@@ -280,8 +260,6 @@ erDiagram
         long user_id FK
         long book_id FK
     }
-```
-
 
 ## Database Relationship Matrix
 
