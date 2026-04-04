@@ -52,3 +52,17 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+def localServerPort = System.getenv('SERVER_PORT') ?: '8081'
+
+tasks.register('freeLocalPortForBootRun', Exec) {
+	onlyIf { org.gradle.internal.os.OperatingSystem.current().isWindows() }
+	ignoreExitValue = true
+	commandLine 'powershell', '-NoProfile', '-Command',
+			('Get-NetTCPConnection -LocalPort ' + localServerPort + ' -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }')
+}
+
+tasks.named('bootRun') {
+	dependsOn tasks.named('freeLocalPortForBootRun')
+	args = ["--server.port=${localServerPort}"]
+}

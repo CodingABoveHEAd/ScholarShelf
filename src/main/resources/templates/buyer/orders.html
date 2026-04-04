@@ -53,21 +53,18 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex gap-2">
-                        <!-- Accept/Confirm button for PENDING orders -->
+                        <!-- Buyers can cancel only while order is pending approval -->
                         <form th:if="${order.status.name() == 'PENDING'}"
-                              th:action="@{/buyer/orders/{id}/accept(id=${order.id})}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-success btn-sm">
-                                <i class="bi bi-check-circle-fill"></i> Confirm Order
-                            </button>
-                        </form>
-                        <!-- Cancel button for non-cancelled orders -->
-                        <form th:if="${order.status.name() != 'CANCELLED'}"
                               th:action="@{/buyer/orders/{id}/cancel(id=${order.id})}" method="post" class="d-inline">
                             <button type="submit" class="btn btn-outline-danger btn-sm"
                                     onclick="return confirm('Are you sure you want to cancel this order?')">
                                 <i class="bi bi-x-circle"></i> Cancel
                             </button>
                         </form>
+                        <span th:if="${order.status.name() != 'PENDING' && order.status.name() != 'CANCELLED'}"
+                              class="text-muted small align-self-center">
+                            <i class="bi bi-info-circle"></i> This order is under seller/admin processing
+                        </span>
                     </div>
                     <span class="fw-bold fs-5">Total: $<span th:text="${#numbers.formatDecimal(order.totalPrice, 1, 2)}"></span></span>
                 </div>

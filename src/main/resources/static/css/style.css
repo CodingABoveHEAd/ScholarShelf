@@ -2,6 +2,143 @@
    ScholarShelf - Custom Styles
    ===================== */
 
+/* =====================
+   Global Golden Theme
+   ===================== */
+:root {
+    --bs-primary: #c8892c;
+    --bs-primary-rgb: 200, 137, 44;
+    --bs-primary-text-emphasis: #5d3a06;
+    --bs-primary-bg-subtle: #f8ecd8;
+    --bs-primary-border-subtle: #e9c48e;
+
+    --bs-link-color: #9a6218;
+    --bs-link-hover-color: #7f4f0f;
+
+    --scholar-cream: #fffaf1;
+    --scholar-cream-deep: #f6ecd9;
+    --scholar-ink: #3f2b13;
+    --scholar-brown: #2d1b0b;
+    --scholar-gold-soft: #f0cf95;
+    --scholar-gold-glow: rgba(200, 137, 44, 0.24);
+}
+
+body {
+    background: linear-gradient(180deg, var(--scholar-cream) 0%, #fffdfa 45%, var(--scholar-cream-deep) 100%);
+    color: var(--scholar-ink);
+}
+
+a {
+    color: var(--bs-link-color);
+}
+
+a:hover {
+    color: var(--bs-link-hover-color);
+}
+
+/* Make all Bootstrap primary variants align with golden palette */
+.btn-primary {
+    --bs-btn-bg: #c8892c;
+    --bs-btn-border-color: #c8892c;
+    --bs-btn-hover-bg: #b27520;
+    --bs-btn-hover-border-color: #a86c1b;
+    --bs-btn-active-bg: #a86c1b;
+    --bs-btn-active-border-color: #9d6418;
+    --bs-btn-disabled-bg: #d6a666;
+    --bs-btn-disabled-border-color: #d6a666;
+    --bs-btn-color: #fffaf0;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #9a6218;
+    --bs-btn-border-color: #c8892c;
+    --bs-btn-hover-bg: #c8892c;
+    --bs-btn-hover-border-color: #c8892c;
+    --bs-btn-active-bg: #a86c1b;
+    --bs-btn-active-border-color: #a86c1b;
+    --bs-btn-hover-color: #fffaf0;
+    --bs-btn-active-color: #fffaf0;
+}
+
+.text-primary {
+    color: #9a6218 !important;
+}
+
+.bg-primary {
+    background-color: #c8892c !important;
+}
+
+.border-primary {
+    border-color: #d9ad6a !important;
+}
+
+.badge.bg-primary {
+    background-color: #c8892c !important;
+    color: #fff8ee;
+}
+
+.link-primary {
+    color: #9a6218 !important;
+}
+
+.link-primary:hover,
+.link-primary:focus {
+    color: #7f4f0f !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: #e0b06b;
+    box-shadow: 0 0 0 0.25rem var(--scholar-gold-glow);
+}
+
+.page-link {
+    color: #9a6218;
+}
+
+.page-link:hover {
+    color: #7f4f0f;
+}
+
+.page-item.active .page-link {
+    background-color: #c8892c;
+    border-color: #c8892c;
+}
+
+/* Warm-dark navbar/footer instead of neutral black */
+.navbar.bg-dark {
+    background: linear-gradient(90deg, #2f1d0c 0%, #3b230d 50%, #2f1d0c 100%) !important;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link,
+.navbar-dark .navbar-toggler,
+.navbar-dark .navbar-toggler-icon {
+    color: #f8e6c6 !important;
+}
+
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus {
+    color: #ffd28b !important;
+}
+
+footer.bg-dark {
+    background: linear-gradient(180deg, #2e1b0c 0%, #251507 100%) !important;
+}
+
+footer .text-secondary {
+    color: #ccb38b !important;
+}
+
+footer .border-secondary {
+    border-color: rgba(240, 207, 149, 0.28) !important;
+}
+
+.card {
+    border-color: rgba(201, 137, 44, 0.12);
+}
+
 /* Book card hover effect */
 .book-card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -91,7 +228,7 @@
 }
 
 #bookCarousel .carousel-indicators button.active {
-    background-color: #0d6efd;
+    background-color: #c8892c;
 }
 
 

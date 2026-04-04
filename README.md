@@ -1,3 +1,4 @@
+
 # ScholarShelf
 
 ScholarShelf is a full-stack Spring Boot platform for buying, selling, and exchanging books. It combines a server-rendered web interface with REST APIs, role-based access control, and a containerized deployment workflow.
@@ -162,6 +163,24 @@ flowchart TB
 
 ## ER Diagram
 
+<<<<<<< HEAD
+```mermaid
+erDiagram
+    USER ||--o{ BOOK : "lists (seller)"
+    CATEGORY ||--o{ BOOK : "categorizes"
+    USER ||--o{ ORDER : "places (buyer)"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    BOOK ||--o{ ORDER_ITEM : "purchased in"
+    USER ||--o{ EXCHANGE_REQUEST : "creates"
+    BOOK ||--o{ EXCHANGE_REQUEST : "receives"
+    USER ||--o{ REVIEW : "writes"
+    BOOK ||--o{ REVIEW : "gets"
+    USER ||--o{ MESSAGE : "sends"
+    USER ||--o{ MESSAGE : "receives"
+    USER ||--o{ WISHLIST : "bookmarks"
+    BOOK ||--o{ WISHLIST : "bookmarked by"
+
+=======
 
 ```mermaid
 erDiagram
@@ -179,6 +198,7 @@ erDiagram
     USER ||--o{ WISHLIST : "bookmarks"
     BOOK ||--o{ WISHLIST : "bookmarked by"
 
+>>>>>>> aecceb4d8ecb239f7ba5a9ffc3a61262e4d1eb2a
     USER {
         long id PK
         string full_name

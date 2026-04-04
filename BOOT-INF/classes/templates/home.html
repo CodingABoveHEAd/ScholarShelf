@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/base :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="~{layout/base :: nav}"></div>
+<div th:replace="~{layout/base :: alerts}"></div>
+
+<main class="flex-grow-1">
+    <!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-layer"></div>
+    <div class="hero-noise"></div>
+
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Book Exchange Platform</span>
+            </div>
+            <h1 class="hero-title">
+                Discover,<br>
+                <span class="hero-title-accent">Exchange</span><br>
+                &amp; Collect Books
+            </h1>
+            <p class="hero-subtitle">
+                Join thousands of readers on ScholarShelf — buy, sell, and trade books with your community. Every book finds a new home.
+            </p>
+            <div class="hero-actions">
+                <a th:href="@{/books}" class="btn-hero-primary">
+                    <i class="bi bi-search"></i> Browse Books
+                </a>
+                <a th:href="@{/auth/register}" class="btn-hero-secondary" sec:authorize="!isAuthenticated()">
+                    <i class="bi bi-person-plus"></i> Get Started Free
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">2K+</span>
+                    <span class="stat-label">Books Listed</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">800+</span>
+                    <span class="stat-label">Active Readers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="books-stage">
+                <div class="book-float book-float--1">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=280&fit=crop" alt="Book">
+                    <div class="book-spine"></div>
+                </div>
+                <div class="book-float book-float--2">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200&h=280&fit=crop" alt="Book">
+                    <div class="book-spine"></div>
+                </div>
+                <div class="book-float book-float--3">
+                    <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=200&h=280&fit=crop" alt="Book">
+                    <div class="book-spine"></div>
+                </div>
+                <div class="books-glow"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500&display=swap');
+
+/* ── Amber/gold palette replacing all blues ── */
+:root {
+    --accent:        #e8a838;
+    --accent-light:  #f5c76a;
+    --accent-dark:   #c47f1a;
+    --accent-glow:   rgba(232, 168, 56, 0.35);
+    --accent-faint:  rgba(232, 168, 56, 0.12);
+    --accent-border: rgba(232, 168, 56, 0.30);
+}
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* Extra top padding to clear fixed navbar (~70px) + breathing room */
+    padding: 120px 0 70px;
+}
+
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    transform: scale(1.04);
+    animation: slowZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.10); }
+}
+
+/* Stronger dark overlay on left where text sits */
+.hero-bg-layer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        rgba(8, 5, 2, 0.93) 0%,
+        rgba(8, 5, 2, 0.84) 38%,
+        rgba(8, 5, 2, 0.50) 65%,
+        rgba(8, 5, 2, 0.22) 100%
+    );
+    pointer-events: none;
+}
+
+.hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* Warm amber glow top-left */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(232,168,56,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ── LEFT: Content ── */
+.hero-content {
+    flex: 0 0 52%;
+    max-width: 52%;
+    animation: fadeSlideUp 0.8s ease both;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-faint);
+    border: 1px solid var(--accent-border);
+    color: var(--accent-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #f5ede0;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+
+/* Warm gold gradient text for "Exchange" */
+.hero-title-accent {
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #c9b99a;
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 36px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+}
+
+/* Amber CTA button */
+.btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #1a0f00;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 13px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 24px var(--accent-glow);
+}
+
+.btn-hero-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(232,168,56,0.55);
+    color: #1a0f00;
+}
+
+.btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    color: #e8ddd0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 13px 28px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+}
+
+.btn-hero-secondary:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(255,255,255,0.4);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: #8a7a68;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.12);
+}
+
+/* ── RIGHT: Book Visual ── */
+.hero-visual {
+    flex: 0 0 44%;
+    max-width: 44%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeSlideUp 0.8s 0.2s ease both;
+}
+
+.books-stage {
+    position: relative;
+    width: 340px;
+    height: 380px;
+}
+
+/* Warm amber glow behind books */
+.books-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(232,168,56,0.28) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.book-float {
+    position: absolute;
+    border-radius: 6px 10px 10px 6px;
+    overflow: hidden;
+    box-shadow: -6px 6px 30px rgba(0,0,0,0.75), 4px 0 0 rgba(0,0,0,0.3) inset;
+}
+
+.book-float img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-spine {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 14px;
+    background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.1));
+    border-radius: 6px 0 0 6px;
+}
+
+.book-float--1 {
+    width: 155px; height: 215px;
+    top: 80px; left: 95px; z-index: 3;
+    animation: float1 4s ease-in-out infinite;
+    transform: rotate(-3deg);
+}
+.book-float--2 {
+    width: 135px; height: 195px;
+    top: 100px; left: 10px; z-index: 2;
+    animation: float2 4.5s ease-in-out infinite;
+    transform: rotate(-10deg);
+    filter: brightness(0.65);
+}
+.book-float--3 {
+    width: 135px; height: 195px;
+    top: 90px; left: 195px; z-index: 2;
+    animation: float3 5s ease-in-out infinite;
+    transform: rotate(8deg);
+    filter: brightness(0.60);
+}
+
+@keyframes float1 {
+    0%, 100% { transform: rotate(-3deg) translateY(0px); }
+    50%       { transform: rotate(-3deg) translateY(-14px); }
+}
+@keyframes float2 {
+    0%, 100% { transform: rotate(-10deg) translateY(0px); }
+    50%       { transform: rotate(-10deg) translateY(-10px); }
+}
+@keyframes float3 {
+    0%, 100% { transform: rotate(8deg) translateY(0px); }
+    50%       { transform: rotate(8deg) translateY(-12px); }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+    .hero-section { min-height: auto; padding: 100px 0 60px; }
+    .hero-bg-image { background-position: 65% center; }
+    .hero-bg-layer {
+        background: linear-gradient(
+            180deg,
+            rgba(8,5,2,0.92) 0%,
+            rgba(8,5,2,0.82) 60%,
+            rgba(8,5,2,0.72) 100%
+        );
+    }
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-content { flex: none; max-width: 100%; }
+    .hero-subtitle { margin: 0 auto 36px; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { flex: none; max-width: 100%; }
+    .books-stage { width: 280px; height: 300px; }
+    .book-float--1 { width: 130px; height: 180px; top: 60px; left: 75px; }
+    .book-float--2 { width: 110px; height: 160px; top: 80px; left: 5px; }
+    .book-float--3 { width: 110px; height: 160px; top: 70px; left: 165px; }
+}
+
+@media (max-width: 575px) {
+    .hero-title { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
+}
+
+/* ── Books By Author ─────────────────────────────────────────────────────── */
+.author-showcase {
+    position: relative;
+    padding: 64px 0;
+    background:
+        radial-gradient(1200px 380px at 50% -80px, rgba(232,168,56,0.12), transparent 70%),
+        linear-gradient(180deg, #fffaf1 0%, #ffffff 52%, #fdfaf5 100%);
+}
+
+.author-showcase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    color: #2a1d0f;
+    margin-bottom: 8px;
+}
+
+.author-showcase-subtitle {
+    color: #7a6852;
+    font-size: 0.98rem;
+    max-width: 620px;
+    margin: 0 auto 34px;
+}
+
+.author-block {
+    background: #ffffff;
+    border: 1px solid rgba(196,127,26,0.16);
+    border-radius: 18px;
+    box-shadow: 0 10px 34px rgba(60, 36, 10, 0.08);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.author-block-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.author-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.author-initial {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #2b1800;
+    background: linear-gradient(145deg, #f6cc77, #e8a838);
+    box-shadow: 0 8px 18px rgba(232,168,56,0.35);
+    flex-shrink: 0;
+}
+
+.author-name {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: #342312;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.author-meta {
+    color: #8a755d;
+    font-size: 0.84rem;
+}
+
+.author-view-all {
+    border: 1px solid rgba(196,127,26,0.35);
+    color: #6f460f;
+    background: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 7px 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.author-view-all:hover {
+    background: #f7ead4;
+    color: #4d3007;
+    border-color: rgba(196,127,26,0.55);
+}
+
+.author-book-card {
+    border: 1px solid rgba(196,127,26,0.14);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.author-book-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(196,127,26,0.38);
+    box-shadow: 0 14px 28px rgba(60, 36, 10, 0.12);
+}
+
+.author-book-cover {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.author-book-card .card-body {
+    padding: 12px 13px;
+}
+
+.author-book-title {
+    font-weight: 700;
+    color: #2f2316;
+    margin-bottom: 6px;
+}
+
+.author-book-meta {
+    font-size: 0.82rem;
+    color: #8b7965;
+    margin-bottom: 10px;
+}
+
+.author-book-price {
+    color: #1d8f52;
+    font-weight: 800;
+}
+
+@media (max-width: 767px) {
+    .author-showcase {
+        padding: 48px 0;
+    }
+
+    .author-block {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .author-block-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .author-view-all {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+    <!-- Featured Books Carousel -->
+ <!-- Featured Books Carousel -->
+<section class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-star"></i> Latest Books</h2>
+        <a th:href="@{/books}" class="btn btn-outline-primary">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div th:if="${books != null && !#lists.isEmpty(books)}">
+
+        <!-- ── MOBILE carousel: 1 book per slide (visible xs→sm) ── -->
+        <div class="d-block d-md-none">
+            <div id="bookCarouselMobile" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow">
+                    <div th:each="book, iterStat : ${books}"
+                         th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                        <div class="px-2 py-2">
+                            <div class="card h-100 shadow-sm book-card">
+                                <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                     class="card-img-top" alt="Book cover"
+                                     style="height: 260px; object-fit: cover;">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                    <p class="card-text text-muted small mb-1 text-truncate">
+                                        <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                    </p>
+                                    <p class="card-text small mb-2">
+                                        <span class="badge bg-info" th:text="${book.bookCondition}">Cond</span>
+                                        <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                        <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                                              th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                    </p>
+                                    <p class="card-text small text-muted mb-2">
+                                        📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> in stock
+                                    </p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselMobile" data-bs-slide="prev" style="filter:invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselMobile" data-bs-slide="next" style="filter:invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
+                    <button th:each="book, iterStat : ${books}"
+                            type="button" data-bs-target="#bookCarouselMobile"
+                            th:attr="data-bs-slide-to=${iterStat.index}"
+                            th:classappend="${iterStat.index == 0} ? 'active'">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TABLET carousel: 2 books per slide (visible sm→md) ── -->
+        <div class="d-none d-md-block d-lg-none">
+            <div id="bookCarouselTablet" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow">
+                    <th:block th:with="chunkSize=2">
+                        <div th:each="book, iterStat : ${books}"
+                             th:if="${iterStat.index % chunkSize == 0}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="row g-0 px-1 py-2">
+                                <div th:each="inner, innerStat : ${books}"
+                                     th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                     class="col-6 px-2">
+                                    <div class="card h-100 shadow-sm book-card">
+                                        <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                             class="card-img-top" alt="Book cover"
+                                             style="height: 240px; object-fit: cover;">
+                                        <div class="card-body d-flex flex-column p-3">
+                                            <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                            <p class="card-text text-muted small mb-1 text-truncate">
+                                                <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                            </p>
+                                            <p class="card-text small mb-2">
+                                                <span class="badge bg-info" th:text="${inner.bookCondition}">Cond</span>
+                                                <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                <span class="badge" th:classappend="${inner.available} ? 'bg-success' : 'bg-danger'"
+                                                      th:text="${inner.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                            </p>
+                                            <p class="card-text small text-muted mb-2">
+                                                📦 <span th:text="${inner.quantity != null ? inner.quantity : 0}">0</span> in stock
+                                            </p>
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselTablet" data-bs-slide="prev" style="filter:invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselTablet" data-bs-slide="next" style="filter:invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
+                    <th:block th:with="chunkSize=2">
+                        <button th:each="book, iterStat : ${books}"
+                                th:if="${iterStat.index % chunkSize == 0}"
+                                type="button" data-bs-target="#bookCarouselTablet"
+                                th:attr="data-bs-slide-to=${iterStat.index / chunkSize}"
+                                th:classappend="${iterStat.index == 0} ? 'active'">
+                        </button>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── DESKTOP carousel: 4 books per slide (visible lg+) ── -->
+        <div class="d-none d-lg-block">
+            <div id="bookCarouselDesktop" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow">
+                    <th:block th:with="chunkSize=4">
+                        <div th:each="book, iterStat : ${books}"
+                             th:if="${iterStat.index % chunkSize == 0}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="row row-cols-4 g-0 px-1 py-2">
+                                <div th:each="inner, innerStat : ${books}"
+                                     th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                     class="col px-2">
+                                    <div class="card h-100 shadow-sm book-card">
+                                        <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                             class="card-img-top" alt="Book cover"
+                                             style="height: 220px; object-fit: cover;">
+                                        <div class="card-body d-flex flex-column p-3">
+                                            <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                            <p class="card-text text-muted small mb-1 text-truncate">
+                                                <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                            </p>
+                                            <p class="card-text small mb-2">
+                                                <span class="badge bg-info" th:text="${inner.bookCondition}">Cond</span>
+                                                <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                <span class="badge" th:classappend="${inner.available} ? 'bg-success' : 'bg-danger'"
+                                                      th:text="${inner.available} ? 'In Stock' : 'Out of Stock'"></span>
+                                            </p>
+                                            <p class="card-text small text-muted mb-2">
+                                                📦 <span th:text="${inner.quantity != null ? inner.quantity : 0}">0</span> in stock
+                                            </p>
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarouselDesktop" data-bs-slide="prev" style="filter:invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarouselDesktop" data-bs-slide="next" style="filter:invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+                <div class="carousel-indicators position-relative mt-2" style="filter:invert(1);">
+                    <th:block th:with="chunkSize=4">
+                        <button th:each="book, iterStat : ${books}"
+                                th:if="${iterStat.index % chunkSize == 0}"
+                                type="button" data-bs-target="#bookCarouselDesktop"
+                                th:attr="data-bs-slide-to=${iterStat.index / chunkSize}"
+                                th:classappend="${iterStat.index == 0} ? 'active'">
+                        </button>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card grid below carousel (unchanged) -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mt-2">
+            <div class="col" th:each="book : ${books}">
+                <div class="card h-100 shadow-sm book-card">
+                    <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                         class="card-img-top" alt="Book cover" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Book Title</h6>
+                        <p class="card-text text-muted small mb-1">
+                            <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                        </p>
+                        <p class="card-text small mb-1">
+                            <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
+                            <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                            <span class="badge" th:classappend="${book.available} ? 'bg-success' : 'bg-danger'"
+                                  th:text="${book.available} ? 'In Stock' : 'Out of Stock'"></span>
+                        </p>
+                        <p class="card-text small text-muted mb-2">
+                            📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> copies available
+                        </p>
+                        <div class="mt-auto pt-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-success fs-6">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${books == null || #lists.isEmpty(books)}" class="text-center py-5">
+        <i class="bi bi-inbox display-1 text-muted"></i>
+        <p class="text-muted mt-3">No books available yet. Be the first to list one!</p>
+    </div>
+</section>
+
+    <!-- Categories Section -->
+    <section class="bg-light py-5" th:if="${categories != null && !#lists.isEmpty(categories)}">
+        <div class="container">
+            <h2 class="text-center mb-4"><i class="bi bi-tags"></i> Browse by Category</h2>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
+                <div class="col" th:each="category : ${categories}">
+                    <a th:href="@{/books(categoryId=${category.id})}" class="text-decoration-none">
+                        <div class="card text-center h-100 border-0 shadow-sm category-card">
+                            <div class="card-body">
+                                <i class="bi bi-bookmark display-6 text-primary"></i>
+                                <h6 class="card-title mt-2" th:text="${category.name}">Category</h6>
+                                <small class="text-muted" th:text="${category.bookCount} + ' books'">0 books</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books by Author Section -->
+    <section class="author-showcase" th:if="${booksByWriter != null && !booksByWriter.isEmpty()}">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="author-showcase-title"><i class="bi bi-feather"></i> Books by Author</h2>
+                <p class="author-showcase-subtitle">
+                    Explore curated titles grouped by each writer and quickly jump into the full catalog for your favorite authors.
+                </p>
+            </div>
+
+            <div th:each="entry : ${booksByWriter}" class="author-block">
+                <div class="author-block-head">
+                    <div class="author-badge-wrap">
+                        <span class="author-initial" th:text="${entry.key != null && !entry.key.isEmpty()} ? ${#strings.toUpperCase(#strings.substring(entry.key,0,1))} : 'A'">A</span>
+                        <div>
+                            <div class="author-name" th:text="${entry.key}">Author Name</div>
+                            <div class="author-meta">
+                                <i class="bi bi-collection"></i>
+                                <span th:text="${#lists.size(entry.value)} + ' books available'"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a th:href="@{/books(keyword=${entry.key})}" class="author-view-all">
+                        View all by this author <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+                    <div class="col" th:each="book : ${entry.value}">
+                        <div class="card h-100 author-book-card">
+                            <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                 class="author-book-cover" alt="Book cover">
+
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="author-book-title text-truncate" th:text="${book.title}">Book Title</h6>
+                                <p class="author-book-meta text-truncate mb-2">
+                                    <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                </p>
+
+                                <div class="d-flex gap-1 flex-wrap mb-2">
+                                    <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
+                                    <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                                </div>
+
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <span class="author-book-price">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books by Condition Section -->
+    <section class="bg-light py-5" th:if="${booksByCondition != null && !#lists.isEmpty(booksByCondition)}">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-award"></i> Top Condition Books</h2>
+                <span class="badge bg-success fs-6" th:text="${booksByCondition[0].bookCondition}">Condition</span>
+            </div>
+
+            <!-- Mobile: 1 per slide -->
+            <div class="d-block d-md-none">
+                <div id="conditionCarouselMobile" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <div th:each="book, iterStat : ${booksByCondition}"
+                             th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="px-2 py-2">
+                                <div class="card h-100 shadow-sm book-card">
+                                    <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                         class="card-img-top" alt="Book cover" style="height: 260px; object-fit: cover;">
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title fw-bold text-truncate" th:text="${book.title}">Title</h6>
+                                        <p class="card-text text-muted small mb-1 text-truncate">
+                                            <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                        </p>
+                                        <p class="card-text small mb-2">
+                                            <span class="badge bg-success" th:text="${book.bookCondition}">Cond</span>
+                                            <span class="badge bg-secondary" th:text="${book.categoryName}">Cat</span>
+                                        </p>
+                                        <p class="card-text small text-muted mb-2">
+                                            📦 <span th:text="${book.quantity != null ? book.quantity : 0}">0</span> in stock
+                                        </p>
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                            <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselMobile" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselMobile" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tablet: 2 per slide -->
+            <div class="d-none d-md-block d-lg-none">
+                <div id="conditionCarouselTablet" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <th:block th:with="chunkSize=2">
+                            <div th:each="book, iterStat : ${booksByCondition}"
+                                 th:if="${iterStat.index % chunkSize == 0}"
+                                 th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                <div class="row g-0 px-1 py-2">
+                                    <div th:each="inner, innerStat : ${booksByCondition}"
+                                         th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                         class="col-6 px-2">
+                                        <div class="card h-100 shadow-sm book-card">
+                                            <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                                 class="card-img-top" alt="Book cover" style="height: 240px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                                <p class="card-text text-muted small mb-1 text-truncate">
+                                                    <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                                </p>
+                                                <p class="card-text small mb-2">
+                                                    <span class="badge bg-success" th:text="${inner.bookCondition}">Cond</span>
+                                                    <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                </p>
+                                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                    <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                    <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselTablet" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselTablet" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop: 4 per slide -->
+            <div class="d-none d-lg-block">
+                <div id="conditionCarouselDesktop" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow">
+                        <th:block th:with="chunkSize=4">
+                            <div th:each="book, iterStat : ${booksByCondition}"
+                                 th:if="${iterStat.index % chunkSize == 0}"
+                                 th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                <div class="row row-cols-4 g-0 px-1 py-2">
+                                    <div th:each="inner, innerStat : ${booksByCondition}"
+                                         th:if="${innerStat.index >= iterStat.index && innerStat.index < iterStat.index + chunkSize}"
+                                         class="col px-2">
+                                        <div class="card h-100 shadow-sm book-card">
+                                            <img th:src="${inner.imageUrl != null && !inner.imageUrl.isEmpty()} ? ${inner.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
+                                                 class="card-img-top" alt="Book cover" style="height: 220px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <h6 class="card-title fw-bold text-truncate" th:text="${inner.title}">Title</h6>
+                                                <p class="card-text text-muted small mb-1 text-truncate">
+                                                    <i class="bi bi-person"></i> <span th:text="${inner.author}">Author</span>
+                                                </p>
+                                                <p class="card-text small mb-2">
+                                                    <span class="badge bg-success" th:text="${inner.bookCondition}">Cond</span>
+                                                    <span class="badge bg-secondary" th:text="${inner.categoryName}">Cat</span>
+                                                </p>
+                                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                    <span class="fw-bold text-success">$<span th:text="${#numbers.formatDecimal(inner.price, 1, 2)}">0.00</span></span>
+                                                    <a th:href="@{/books/{id}(id=${inner.id})}" class="btn btn-sm btn-primary">View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#conditionCarouselDesktop" data-bs-slide="prev" style="filter:invert(1);">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#conditionCarouselDesktop" data-bs-slide="next" style="filter:invert(1);">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container my-5">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-person-plus display-6 text-primary"></i>
+                </div>
+                <h5>Register</h5>
+                <p class="text-muted">Create your account as a Buyer or Seller and join our community.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-search display-6 text-success"></i>
+                </div>
+                <h5>Discover</h5>
+                <p class="text-muted">Browse, search, and filter books by title, author, category, or condition.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-arrow-left-right display-6 text-warning"></i>
+                </div>
+                <h5>Exchange</h5>
+                <p class="text-muted">Send exchange requests, chat with sellers, and complete your transaction.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{layout/base :: footer}"></div>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

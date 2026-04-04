@@ -30,9 +30,9 @@ public interface OrderService {
     List<BookStockResponse> getStockReport();
 
     /**
-     * Accept/confirm an order (buyer confirms their own pending order, or admin accepts).
+     * Seller accepts/approves an order that contains at least one of their listed books.
      */
-    OrderResponse acceptOrder(Long orderId, String userEmail);
+    OrderResponse sellerAcceptOrder(Long orderId, String sellerEmail);
 
     /**
      * Admin accepts/approves any order.
@@ -40,7 +40,7 @@ public interface OrderService {
     OrderResponse adminAcceptOrder(Long orderId);
 
     /**
-     * Cancel an order. Buyer can cancel their own, admin can cancel any.
+     * Cancel an order by buyer. Cancellation is allowed only while order is pending.
      */
     OrderResponse cancelOrder(Long orderId, String userEmail);
 
