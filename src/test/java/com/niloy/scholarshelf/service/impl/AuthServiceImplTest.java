@@ -27,6 +27,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
+
+/**
+ * Unit tests for AuthServiceImpl using Mockito to mock dependencies and test the service logic.
+ * AuthServiceImplTest focuses on testing the registration and login functionalities, as well as fetching the current user.
+ * Tests include successful scenarios and various failure cases such as duplicate email registration, invalid role, authentication failure, and user not found scenarios.
+ */
 @ExtendWith(MockitoExtension.class)
 class AuthServiceImplTest {
 
