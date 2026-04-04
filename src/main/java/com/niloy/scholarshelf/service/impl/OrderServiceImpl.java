@@ -81,29 +81,36 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse acceptOrder(Long orderId, String userEmail) {
-        log.info("Accepting order {} by user {}", orderId, userEmail);
+    public OrderResponse sellerAcceptOrder(Long orderId, String sellerEmail) {
+        log.info("Seller accepting order {} by user {}", orderId, sellerEmail);
 
-        User buyer = userRepository.findByEmail(userEmail)
+        User seller = userRepository.findByEmail(sellerEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
 
-        if (!order.getBuyer().getId().equals(buyer.getId())) {
-            throw new IllegalStateException("You can only accept your own orders.");
+        boolean isCorrespondingSeller = order.getItems().stream()
+                .anyMatch(item -> item.getBook() != null
+                        && item.getBook().getSeller() != null
+                        && item.getBook().getSeller().getId().equals(seller.getId()));
+
+        if (!isCorrespondingSeller) {
+            throw new IllegalStateException("Only the corresponding seller can accept this order.");
         }
 
-        if (order.getStatus() != OrderStatus.PENDING) {
+        if (order.getStatus() != OrderStatus.PENDING && order.getStatus() != OrderStatus.PLACED) {
             throw new IllegalStateException("Only pending orders can be accepted. Current status: " + order.getStatus());
         }
 
-        // Deduct stock now
-        deductStock(order);
+        // Deduct stock for modern PENDING orders; legacy PLACED orders may already have stock applied.
+        if (order.getStatus() == OrderStatus.PENDING) {
+            deductStock(order);
+        }
 
         order.setStatus(OrderStatus.ACCEPTED);
         order = orderRepository.save(order);
-        log.info("Order {} accepted successfully", orderId);
+        log.info("Order {} accepted successfully by seller", orderId);
         return toResponse(order);
     }
 
@@ -147,9 +154,8 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalStateException("Order is already cancelled.");
         }
 
-        // Restore stock if it was already deducted (ACCEPTED or PLACED)
-        if (order.getStatus() == OrderStatus.ACCEPTED || order.getStatus() == OrderStatus.PLACED) {
-            restoreStock(order);
+        if (order.getStatus() != OrderStatus.PENDING) {
+            throw new IllegalStateException("Only pending orders can be cancelled by the buyer. Current status: " + order.getStatus());
         }
 
         order.setStatus(OrderStatus.CANCELLED);

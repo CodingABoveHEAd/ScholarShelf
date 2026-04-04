@@ -60,12 +60,12 @@ public class OrderApiController {
     }
 
     /**
-     * POST /api/orders/{id}/accept — buyer confirms their own pending order
+     * POST /api/orders/seller/{id}/accept — corresponding seller accepts an order
      */
-    @PostMapping("/{id}/accept")
-    @PreAuthorize("hasRole('BUYER')")
-    public ResponseEntity<OrderResponse> acceptOrder(@PathVariable Long id, Authentication authentication) {
-        return ResponseEntity.ok(orderService.acceptOrder(id, authentication.getName()));
+    @PostMapping("/seller/{id}/accept")
+    @PreAuthorize("hasRole('SELLER')")
+    public ResponseEntity<OrderResponse> sellerAcceptOrder(@PathVariable Long id, Authentication authentication) {
+        return ResponseEntity.ok(orderService.sellerAcceptOrder(id, authentication.getName()));
     }
 
     /**

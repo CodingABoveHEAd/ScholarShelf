@@ -71,22 +71,6 @@ public class OrderWebController {
     }
 
     /**
-     * Buyer confirms/accepts their pending order.
-     */
-    @PostMapping("/buyer/orders/{orderId}/accept")
-    public String acceptOrder(@PathVariable Long orderId,
-                              Authentication authentication,
-                              RedirectAttributes redirectAttributes) {
-        try {
-            orderService.acceptOrder(orderId, authentication.getName());
-            redirectAttributes.addFlashAttribute("success", "Order #" + orderId + " has been confirmed successfully!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        }
-        return "redirect:/buyer/orders";
-    }
-
-    /**
      * Buyer cancels their own order.
      */
     @PostMapping("/buyer/orders/{orderId}/cancel")

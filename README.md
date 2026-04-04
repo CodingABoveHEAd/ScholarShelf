@@ -1,3 +1,4 @@
+
 # ScholarShelf
 
 ScholarShelf is a full-stack Spring Boot platform for buying, selling, and exchanging books. It combines a server-rendered web interface with REST APIs, role-based access control, and a containerized deployment workflow.
@@ -97,17 +98,99 @@ flowchart LR
     S --> C[Cloudinary Service]
 ```
 
-### Architectural Notes
-
-- Web controllers (Thymeleaf pages) and API controllers coexist in the same application.
-- Security is stateless for API requests using JWT.
-- Business logic is centralized in services.
-- Persistence is managed via Spring Data JPA repositories.
-
 ## ER Diagram
 
 ```mermaid
+erDiagram
+    USER ||--o{ BOOK : "lists (seller)"
+    CATEGORY ||--o{ BOOK : "categorizes"
+    USER ||--o{ ORDER : "places (buyer)"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    BOOK ||--o{ ORDER_ITEM : "purchased in"
+    USER ||--o{ EXCHANGE_REQUEST : "creates"
+    BOOK ||--o{ EXCHANGE_REQUEST : "receives"
+    USER ||--o{ REVIEW : "writes"
+    BOOK ||--o{ REVIEW : "gets"
+    USER ||--o{ MESSAGE : "sends"
+    USER ||--o{ MESSAGE : "receives"
+    USER ||--o{ WISHLIST : "bookmarks"
+    BOOK ||--o{ WISHLIST : "bookmarked by"
 
+    USER {
+        long id PK
+        string full_name
+        string email
+        string password
+        string phone
+        string address
+        string profile_image_url
+        string role
+        boolean active
+        datetime created_at
+    }
+    CATEGORY {
+        long id PK
+        string name
+        string description
+    }
+    BOOK {
+        long id PK
+        long seller_id FK
+        long category_id FK
+        string title
+        string author
+        string isbn
+        text description
+        decimal price
+        string book_condition
+        string image_url
+        int quantity
+        boolean available
+        datetime created_at
+    }
+    ORDER {
+        long id PK
+        long buyer_id FK
+        datetime order_date
+        decimal total_price
+        string status
+    }
+    ORDER_ITEM {
+        long id PK
+        long order_id FK
+        long book_id FK
+        int ordered_quantity
+        decimal unit_price
+    }
+    EXCHANGE_REQUEST {
+        long id PK
+        long buyer_id FK
+        long book_id FK
+        text message
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+    REVIEW {
+        long id PK
+        long reviewer_id FK
+        long book_id FK
+        int rating
+        text comment
+        datetime created_at
+    }
+    MESSAGE {
+        long id PK
+        long sender_id FK
+        long receiver_id FK
+        text content
+        boolean is_read
+        datetime sent_at
+    }
+    WISHLIST {
+        long user_id FK
+        long book_id FK
+    }
 ```
 
 ## Database Relationship Matrix
