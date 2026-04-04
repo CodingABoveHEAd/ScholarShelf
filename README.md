@@ -197,7 +197,6 @@ erDiagram
     USER ||--o{ WISHLIST : "bookmarks"
     BOOK ||--o{ WISHLIST : "bookmarked by"
 
->>>>>>> aecceb4d8ecb239f7ba5a9ffc3a61262e4d1eb2a
     USER {
         long id PK
         string full_name
@@ -210,11 +209,13 @@ erDiagram
         boolean active
         datetime created_at
     }
+
     CATEGORY {
         long id PK
         string name
         string description
     }
+
     BOOK {
         long id PK
         long seller_id FK
@@ -230,6 +231,7 @@ erDiagram
         boolean available
         datetime created_at
     }
+
     ORDER {
         long id PK
         long buyer_id FK
@@ -237,6 +239,7 @@ erDiagram
         decimal total_price
         string status
     }
+
     ORDER_ITEM {
         long id PK
         long order_id FK
@@ -244,6 +247,7 @@ erDiagram
         int ordered_quantity
         decimal unit_price
     }
+
     EXCHANGE_REQUEST {
         long id PK
         long buyer_id FK
@@ -253,6 +257,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
+
     REVIEW {
         long id PK
         long reviewer_id FK
@@ -261,6 +266,7 @@ erDiagram
         text comment
         datetime created_at
     }
+
     MESSAGE {
         long id PK
         long sender_id FK
@@ -269,6 +275,7 @@ erDiagram
         boolean is_read
         datetime sent_at
     }
+
     WISHLIST {
         long user_id FK
         long book_id FK
