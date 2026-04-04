@@ -81,24 +81,106 @@ flowchart TD
     C -->|Admin| L[Manage Users and Orders]
     L --> M[View Stock and System Data]
 ```
-
-## Architecture Diagram
+  
+## Architectural Diagram
 
 ```mermaid
-flowchart LR
-    U[Web Browser / API Client] --> W[Spring Web Controllers]
-    W --> S[Service Layer]
-    S --> R[Repository Layer]
-    R --> DB[(PostgreSQL)]
+flowchart TB
+    %% -------- Clients --------
+    U[End Users]
+    WC[Web Browser]
+    AC[API Client / Postman]
 
-    S --> J[JWT Provider]
-    W --> SEC[Spring Security Filter Chain]
-    SEC --> J
+    U --> WC
+    U --> AC
 
-    S --> C[Cloudinary Service]
+    %% -------- Application --------
+    subgraph APP[ScholarShelf Spring Boot Application]
+        direction TB
+
+        subgraph PRESENTATION[Presentation Layer]
+            WEB[Web Controllers<br/>Thymeleaf MVC]
+            API[REST Controllers<br/>JSON APIs]
+            VIEW[Thymeleaf Templates]
+        end
+
+        subgraph SECURITY[Security Layer]
+            SF[Spring Security Filter Chain]
+            JF[JWT Authentication Filter]
+            JTP[JWT Token Provider]
+            UDS[CustomUserDetailsService]
+        end
+
+        subgraph BUSINESS[Service Layer]
+            SVC[Business Services<br/>Auth, User, Book, Order,<br/>Exchange, Review, Wishlist, Message]
+        end
+
+        subgraph DATA[Data Layer]
+            DTO[DTOs<br/>Request / Response]
+            MAP[Mappers]
+            REPO[Spring Data JPA Repositories]
+            ENT[JPA Entities]
+        end
+
+        subgraph CROSS[Cross-Cutting]
+            CFG[Configuration<br/>Security, JWT, OpenAPI, MVC]
+            EXH[Global Exception Handling]
+            INIT[Data Initialization / Seeding]
+        end
+    end
+
+    %% -------- Infrastructure --------
+    DB[(PostgreSQL Database)]
+    CLD[(Cloudinary Image Storage)]
+
+    %% -------- Flows --------
+    WC --> WEB
+    AC --> API
+
+    WEB --> SF
+    API --> SF
+    SF --> JF
+    JF --> JTP
+    JF --> UDS
+
+    WEB --> SVC
+    API --> SVC
+    SVC --> DTO
+    DTO --> MAP
+    SVC --> REPO
+    REPO --> ENT
+    ENT --> DB
+
+    SVC --> CLD
+
+    CFG -. configures .-> SF
+    CFG -. configures .-> WEB
+    CFG -. configures .-> API
+    EXH -. handles errors for .-> WEB
+    EXH -. handles errors for .-> API
+    INIT -. seeds .-> DB
 ```
 
 ## ER Diagram
+
+<<<<<<< HEAD
+```mermaid
+erDiagram
+    USER ||--o{ BOOK : "lists (seller)"
+    CATEGORY ||--o{ BOOK : "categorizes"
+    USER ||--o{ ORDER : "places (buyer)"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    BOOK ||--o{ ORDER_ITEM : "purchased in"
+    USER ||--o{ EXCHANGE_REQUEST : "creates"
+    BOOK ||--o{ EXCHANGE_REQUEST : "receives"
+    USER ||--o{ REVIEW : "writes"
+    BOOK ||--o{ REVIEW : "gets"
+    USER ||--o{ MESSAGE : "sends"
+    USER ||--o{ MESSAGE : "receives"
+    USER ||--o{ WISHLIST : "bookmarks"
+    BOOK ||--o{ WISHLIST : "bookmarked by"
+
+=======
 
 ```mermaid
 erDiagram
@@ -116,6 +198,7 @@ erDiagram
     USER ||--o{ WISHLIST : "bookmarks"
     BOOK ||--o{ WISHLIST : "bookmarked by"
 
+>>>>>>> aecceb4d8ecb239f7ba5a9ffc3a61262e4d1eb2a
     USER {
         long id PK
         string full_name
@@ -192,6 +275,7 @@ erDiagram
         long book_id FK
     }
 ```
+
 
 ## Database Relationship Matrix
 

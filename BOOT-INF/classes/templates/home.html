@@ -458,7 +458,7 @@
     border: 1px solid rgba(196,127,26,0.16);
     border-radius: 18px;
     box-shadow: 0 10px 34px rgba(60, 36, 10, 0.08);
-    padding: 20px 20px 16px;
+    padding: 20px;
     margin-bottom: 24px;
 }
 
@@ -523,52 +523,6 @@
     border-color: rgba(196,127,26,0.55);
 }
 
-.author-shelf-wrap {
-    position: relative;
-}
-
-.author-shelf-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 54px;
-    height: 100%;
-    pointer-events: none;
-    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
-}
-
-.author-shelf-scroll {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 2px 4px 10px 2px;
-    scroll-snap-type: x proximity;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(196,127,26,0.5) rgba(196,127,26,0.12);
-}
-
-.author-shelf-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-
-.author-shelf-scroll::-webkit-scrollbar-track {
-    background: rgba(196,127,26,0.12);
-    border-radius: 99px;
-}
-
-.author-shelf-scroll::-webkit-scrollbar-thumb {
-    background: rgba(196,127,26,0.52);
-    border-radius: 99px;
-}
-
-.author-shelf-item {
-    flex: 0 0 220px;
-    max-width: 220px;
-    scroll-snap-align: start;
-}
-
 .author-book-card {
     border: 1px solid rgba(196,127,26,0.14);
     border-radius: 14px;
@@ -584,7 +538,7 @@
 }
 
 .author-book-cover {
-    height: 230px;
+    height: 200px;
     width: 100%;
     object-fit: cover;
 }
@@ -610,12 +564,6 @@
     font-weight: 800;
 }
 
-.author-shelf-tip {
-    color: #8a755d;
-    font-size: 0.78rem;
-    margin-top: 7px;
-}
-
 @media (max-width: 767px) {
     .author-showcase {
         padding: 48px 0;
@@ -634,19 +582,6 @@
     .author-view-all {
         width: 100%;
         text-align: center;
-    }
-
-    .author-shelf-wrap::after {
-        width: 36px;
-    }
-
-    .author-shelf-item {
-        flex-basis: 180px;
-        max-width: 180px;
-    }
-
-    .author-book-cover {
-        height: 200px;
     }
 }
 </style>
@@ -916,33 +851,30 @@
                     </a>
                 </div>
 
-                <div class="author-shelf-wrap">
-                    <div class="author-shelf-scroll">
-                        <div class="author-shelf-item" th:each="book : ${entry.value}">
-                            <div class="card h-100 author-book-card">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+                    <div class="col" th:each="book : ${entry.value}">
+                        <div class="card h-100 author-book-card">
                             <img th:src="${book.imageUrl != null && !book.imageUrl.isEmpty()} ? ${book.imageUrl} : 'https://placehold.co/300x400?text=No+Image'"
                                  class="author-book-cover" alt="Book cover">
 
-                                <div class="card-body d-flex flex-column">
-                                    <h6 class="author-book-title text-truncate" th:text="${book.title}">Book Title</h6>
-                                    <p class="author-book-meta text-truncate mb-2">
-                                        <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
-                                    </p>
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="author-book-title text-truncate" th:text="${book.title}">Book Title</h6>
+                                <p class="author-book-meta text-truncate mb-2">
+                                    <i class="bi bi-person"></i> <span th:text="${book.author}">Author</span>
+                                </p>
 
-                                    <div class="d-flex gap-1 flex-wrap mb-2">
-                                        <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
-                                        <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
-                                    </div>
+                                <div class="d-flex gap-1 flex-wrap mb-2">
+                                    <span class="badge bg-info" th:text="${book.bookCondition}">Condition</span>
+                                    <span class="badge bg-secondary" th:text="${book.categoryName}">Category</span>
+                                </div>
 
-                                    <div class="mt-auto d-flex justify-content-between align-items-center">
-                                        <span class="author-book-price">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
-                                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
-                                    </div>
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <span class="author-book-price">$<span th:text="${#numbers.formatDecimal(book.price, 1, 2)}">0.00</span></span>
+                                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-sm btn-primary">View</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="author-shelf-tip"><i class="bi bi-arrows-angle-expand"></i> Scroll horizontally to explore more books by this author</div>
                 </div>
             </div>
         </div>
