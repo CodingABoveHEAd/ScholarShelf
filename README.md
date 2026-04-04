@@ -162,6 +162,7 @@ flowchart TB
 ```
 
 ## ER Diagram
+```mermaid
 erDiagram
     USER ||--o{ BOOK : "lists (seller)"
     CATEGORY ||--o{ BOOK : "categorizes"
@@ -260,7 +261,7 @@ erDiagram
         long user_id FK
         long book_id FK
     }
-
+```
 ## Database Relationship Matrix
 
 | Relationship                   | Type | Description                                                                                                     |
