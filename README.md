@@ -84,17 +84,154 @@ flowchart TD
 ## Architecture Diagram
 
 ```mermaid
-flowchart LR
-    U[Web Browser / API Client] --> W[Spring Web Controllers]
-    W --> S[Service Layer]
-    S --> R[Repository Layer]
-    R --> DB[(PostgreSQL)]
+graph TB
+    subgraph "Presentation Layer"
+        WEB["🌐 Web Controllers<br/>(Thymeleaf Templates)"]
+        API["🔌 REST API Controllers<br/>(JSON Endpoints)"]
+        HTML["📄 HTML Views<br/>(Thymeleaf)"]
+    end
 
-    S --> J[JWT Provider]
-    W --> SEC[Spring Security Filter Chain]
-    SEC --> J
+    subgraph "Security Layer"
+        SEC["🔐 Spring Security<br/>Filter Chain"]
+        JWT["🔑 JWT Token Provider<br/>(Generation & Validation)"]
+        FILTER["⚡ JWT Authentication<br/>Filter"]
+        USERDETAILS["👤 Custom User Details<br/>Service"]
+    end
 
-    S --> C[Cloudinary Service]
+    subgraph "Service Layer - Business Logic"
+        AUTH["🔓 AuthService<br/>(Register, Login)")
+        USER["👥 UserService<br/>(User Management)"]
+        BOOK["📚 BookService<br/>(Book Operations)"]
+        ORDER["🛒 OrderService<br/>(Order Processing)"]
+        EXCHANGE["🔄 ExchangeService<br/>(Exchange Requests)"]
+        REVIEW["⭐ ReviewService<br/>(Reviews)"]
+        WISHL["❤️ WishlistService<br/>(Wishlist)"]
+        MSG["💬 MessageService<br/>(Messaging)"]
+    end
+
+    subgraph "DTO Layer - Data Transfer"
+        REQIN["📥 Request DTOs<br/>(RegisterRequest,<br/>LoginRequest, etc.)")
+        RESPOUT["📤 Response DTOs<br/>(AuthResponse,<br/>BookResponse, etc.)")
+    end
+
+    subgraph "Entity & Mapper Layer"
+        ENTITY["🏛️ JPA Entities<br/>(User, Book, Order,<br/>Review, Message, etc.)")
+        MAPPER["🔄 DTO Mappers<br/>(Entity ↔ DTO<br/>Conversion)"]
+    end
+
+    subgraph "Repository Layer - Data Access"
+        REPO["📊 Spring Data JPA<br/>Repositories<br/>(UserRepo, BookRepo,<br/>OrderRepo, etc.)")
+    end
+
+    subgraph "Configuration & Utilities"
+        CONFIG["⚙️ Configuration Classes<br/>(SecurityConfig,<br/>JwtProperties, etc.)")
+        EXCEPTION["⚠️ Global Exception<br/>Handler"]
+        ENUM["📋 Enums<br/>(Role, OrderStatus,<br/>BookCondition)"]
+        INIT["🌱 DataInitializer<br/>(Seed Test Data)"]
+    end
+
+    subgraph "External Services & Database"
+        CLOUD["☁️ Cloudinary<br/>(Image Upload)")
+        DB["🗄️ PostgreSQL<br/>Database"]
+    end
+
+    %% Client Flows
+    WEB -->|HTTP Requests| SEC
+    API -->|HTTP Requests| SEC
+    HTML -->|User Input| WEB
+
+    %% Security Flow
+    SEC -->|Route Check| FILTER
+    FILTER -->|Token Validation| JWT
+    FILTER -->|Load User Details| USERDETAILS
+    USERDETAILS -->|Fetch from DB| REPO
+
+    %% Controller to Service
+    WEB -->|Calls| AUTH
+    WEB -->|Calls| USER
+    WEB -->|Calls| BOOK
+    WEB -->|Calls| ORDER
+    WEB -->|Calls| EXCHANGE
+    WEB -->|Calls| WISHL
+    WEB -->|Calls| MSG
+    WEB -->|Calls| REVIEW
+
+    API -->|Calls| AUTH
+    API -->|Calls| BOOK
+    API -->|Calls| ORDER
+    API -->|Calls| EXCHANGE
+    API -->|Calls| WISHL
+    API -->|Calls| MSG
+    API -->|Calls| REVIEW
+
+    %% Service to DTO Conversion
+    AUTH -->|Uses| MAPPER
+    USER -->|Uses| MAPPER
+    BOOK -->|Uses| MAPPER
+    ORDER -->|Uses| MAPPER
+    EXCHANGE -->|Uses| MAPPER
+    REVIEW -->|Uses| MAPPER
+    WISHL -->|Uses| MAPPER
+    MSG -->|Uses| MAPPER
+
+    MAPPER -->|Converts to| RESPOUT
+    MAPPER -->|Converts from| REQIN
+
+    %% Service to Entity/Repository
+    AUTH -->|Save/Find Users| REPO
+    USER -->|CRUD Operations| REPO
+    BOOK -->|Query Books| REPO
+    ORDER -->|Process Orders| REPO
+    EXCHANGE -->|Manage Requests| REPO
+    REVIEW -->|Store Reviews| REPO
+    WISHL -->|Query Wishlist| REPO
+    MSG -->|Store Messages| REPO
+
+    %% Repository to Entity
+    REPO -->|Uses| ENTITY
+    ENTITY -->|Persisted To| DB
+    DB -->|Query Results| REPO
+
+    %% Security Configuration
+    CONFIG -->|Configures| SEC
+    CONFIG -->|Configures| JWT
+    CONFIG -->|Password Encoder| AUTH
+
+    %% External Services
+    BOOK -->|Upload Images| CLOUD
+    CLOUD -->|Image URL| BOOK
+
+    %% Exception Handling
+    EXCEPTION -->|Catches| SEC
+    EXCEPTION -->|Catches| WEB
+    EXCEPTION -->|Catches| API
+
+    %% Utilities
+    INIT -->|Seeds Data| DB
+    ENUM -->|Used By| ENTITY
+    ENUM -->|Used By| SERVICE
+
+    %% Response Flow
+    RESPOUT -->|JSON| API
+    RESPOUT -->|Model Attributes| WEB
+    WEB -->|Renders| HTML
+
+    style SEC fill:#ff6b6b
+    style JWT fill:#ff6b6b
+    style FILTER fill:#ff6b6b
+    style USERDETAILS fill:#ff6b6b
+    style AUTH fill:#4ecdc4
+    style USER fill:#4ecdc4
+    style BOOK fill:#4ecdc4
+    style ORDER fill:#4ecdc4
+    style EXCHANGE fill:#4ecdc4
+    style REVIEW fill:#4ecdc4
+    style WISHL fill:#4ecdc4
+    style MSG fill:#4ecdc4
+    style REPO fill:#95e1d3
+    style ENTITY fill:#95e1d3
+    style DB fill:#2c3e50
+    style CLOUD fill:#f8b500
 ```
 
 ## ER Diagram
