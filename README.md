@@ -163,7 +163,6 @@ flowchart TB
 
 ## ER Diagram
 
-<<<<<<< HEAD
 ```mermaid
 erDiagram
     USER ||--o{ BOOK : "lists (seller)"
@@ -275,7 +274,6 @@ erDiagram
         long book_id FK
     }
 ```
-
 
 ## Database Relationship Matrix
 
