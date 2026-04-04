@@ -163,7 +163,6 @@ flowchart TB
 
 ## ER Diagram
 
-<<<<<<< HEAD
 ```mermaid
 erDiagram
     USER ||--o{ BOOK : "lists (seller)"
